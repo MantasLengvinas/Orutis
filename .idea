@@ -11,6 +11,7 @@
 - Back end
 	- Node js, express 
 	- MongoDB duomenų bazė
+<<<<<<< HEAD
 	
 
 	
@@ -28,3 +29,16 @@
 
 	- Norint baigti darba arba uzdarykit cmd arba paspauskit ctrl + c
 	
+=======
+
+	
+#Roles
+
+	Domas - Frontas
+	Matas - Frontas
+	Mantas - Full stack konsultacijos
+	Gustas - Dokumentacija, backas
+	Ovidijus - Frontas
+
+	Eimantas - MIA
+>>>>>>> a0cabd4c750160fa9020ed68c3a3cc952966f4c0
