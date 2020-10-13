@@ -1,1 +1,14 @@
 #Projekto idejos
+
+- Projektas pavežėjų sistema
+
+- Front end
+	- view engine ejs (tiesiog paprastas html)
+	- css 
+	- javascript
+	- bootstrap
+	
+- Back end
+	- Node js, express 
+	- MongoDB duomenų bazė
+	
