@@ -12,3 +12,19 @@
 	- Node js, express 
 	- MongoDB duomenų bazė
 	
+
+	
+	
+- Webo programavimas ir testavimas
+
+	- Jei dar neturit Node js, tai butinai atsisiuskit
+	
+	- Pirma syki padarius pull is github, i cmd reikia parasyti "npm install" (tiek front'ui tiek back'ui)
+	
+	- Programuojant parasykite npm run dev i cmd ir tada bus paleistas serveris. 
+		Padarius pakeitimus, serveris automatiskai persikraus
+
+	- Paleidus serveri, eikit narsykleje i localhost:3000
+
+	- Norint baigti darba arba uzdarykit cmd arba paspauskit ctrl + c
+	
