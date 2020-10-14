@@ -1,6 +1,8 @@
-#Projekto idejos
+#Projekto informacija
 
 - Projektas pavežėjų sistema
+
+-----------------------------------------------------------------------------------------------------------------
 
 - Front end
 	- view engine ejs (tiesiog paprastas html)
@@ -11,11 +13,9 @@
 - Back end
 	- Node js, express 
 	- MongoDB duomenų bazė
-<<<<<<< HEAD
 	
+-----------------------------------------------------------------------------------------------------------------	
 
-	
-	
 - Webo programavimas ir testavimas
 
 	- Jei dar neturit Node js, tai butinai atsisiuskit
@@ -29,8 +29,7 @@
 
 	- Norint baigti darba arba uzdarykit cmd arba paspauskit ctrl + c
 	
-=======
-
+-----------------------------------------------------------------------------------------------------------------
 	
 #Roles
 
@@ -41,4 +40,16 @@
 	Ovidijus - Frontas
 
 	Eimantas - MIA
->>>>>>> a0cabd4c750160fa9020ed68c3a3cc952966f4c0
+
+-----------------------------------------------------------------------------------------------------------------
+
+#Projekto funkcijos
+
+	- Autentifikacija (reikia nuspresti ar naudoti OAuth2 ar kurti savo prisijungima)
+	- Registracija prie sistemos (jei nuspresim kurti savo prisijungima)
+	- Vartotoju roles: 
+		- Vartotojas: gali tvarkyti savo keliones/marsrutus, issikviesti pavezeja (uz papildoma mokesti)
+		- Vezejas: skelbti savo marsruta, priimti/atmesti pavezimo prasymus
+		- Administratorius: blokuoti netinkamai besielgiancius vartotojus
+	- Atsiskaitymo sistema
+	
