@@ -1,14 +1,11 @@
 #Projekto informacija
 
-- Projektas pavežėjų sistema
+- Projektas virtualus gidas
 
 -----------------------------------------------------------------------------------------------------------------
 
 - Front end
-	- view engine ejs (tiesiog paprastas html)
-	- css 
-	- javascript
-	- bootstrap
+	- React native
 	
 - Back end
 	- Node js, express 
@@ -44,11 +41,8 @@
 
 #Projekto funkcijos
 
-	- Autentifikacija (reikia nuspresti ar naudoti OAuth2 ar kurti savo prisijungima)
-	- Registracija prie sistemos (jei nuspresim kurti savo prisijungima)
-	- Vartotoju roles: 
-		- Vartotojas: gali tvarkyti savo keliones/marsrutus, issikviesti pavezeja (uz papildoma mokesti)
-		- Vezejas: skelbti savo marsruta, priimti/atmesti pavezimo prasymus
-		- Administratorius: blokuoti netinkamai besielgiancius vartotojus
-	- Atsiskaitymo sistema
+	- Registracija ir autentifikacija
+	- Personalizacija
+	- Pasiulymu teikimas
+	- Informacijos teikimas (orai, idomios vietos)
 	
