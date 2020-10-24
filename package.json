@@ -1,7 +1,7 @@
 {
-  "name": "kompiuteriu_architekturos_projektas",
+  "name": "ka-projektas",
   "version": "1.0.0",
-  "description": "Kompiuteriu architekturos projektas",
+  "description": "",
   "main": "main.js",
   "scripts": {
     "dev": "nodemon main.js"
@@ -9,8 +9,11 @@
   "author": "Mantas Lengvinas",
   "license": "MIT",
   "dependencies": {
-    "ejs": "^3.1.5",
+    "bcrypt": "^5.0.0",
+    "body-parser": "^1.19.0",
     "express": "^4.17.1",
-    "nodemon": "^2.0.4"
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.10.10",
+    "nodemon": "^2.0.6"
   }
 }
