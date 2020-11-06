@@ -18,4 +18,15 @@ let userSchema = new mongoose.Schema({
 
 })
 
+userSchema.methods.comparePassword = function(password){
+    let user = this;
+
+    return new Promise((resolve, reject) => {
+        if(password !== user.password){
+            return reject('err');
+        }
+        resolve(true);
+    })
+}
+
 mongoose.model('User', userSchema);
