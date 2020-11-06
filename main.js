@@ -8,6 +8,7 @@ let { DB_url } = require('./config/keys')
 
 require('./models/User');
 let authRoutes = require('./routes/authentication')
+let requireToken = require('./middleware/requireToken')
 
 app.use(bodyParser.json());
 app.use(authRoutes)
@@ -26,6 +27,10 @@ mongoose.connection.on('error', (err) => {
     console.log('Cannot connect to DB', err);
 })
 
+
+app.get('/', requireToken, (req, res) => {
+    res.send(`Sveiki, ${req.user.username}`);
+})
 app.listen(port, () => {
     console.log('Server is running on port: ' + port);
 });
