@@ -25,8 +25,25 @@ router.post('/signup', async (req, res) => {
     }
 })
 
-router.post('/signin', (req, res) => {
-    
+router.post('/signin', async (req, res) => {
+    let {email, password} = req.body;
+
+    if(!email || !password){
+        res.status(422).send({error: "Iveskite duomenis"});
+    }
+
+    let user = await User.findOne({email});
+
+    if(!user){
+        es.status(422).send({error: "Vartotojas neegzistuoja"});
+    }
+    try{
+        await user.comparePassword(password);
+        let token = jwt.sign({userId:user._id}, jwtkey);
+        res.send({token});
+    }catch(err){
+        res.status(422).send(err.message);
+    }
 })
 
 module.exports = router;
