@@ -1,6 +1,8 @@
 let mongoose = require('mongoose');
 let bcrypt = require('bcrypt');
 
+//Vartotojo duomenu schema, pagal kuria saugomi duomenys apie vartotoja
+
 let userSchema = new mongoose.Schema({
     username: {
         type: String,
@@ -15,10 +17,15 @@ let userSchema = new mongoose.Schema({
     password: {
         type: String,
         required: true
+    },
+    isVerified: {
+        type: Boolean,
+        default: false
     }
 
 })
 
+//Slaptazodzio tikrinimas
 userSchema.methods.comparePassword = function(password){
     let user = this;
 
@@ -33,6 +40,7 @@ userSchema.methods.comparePassword = function(password){
     })
 }
 
+//Slaptazodzio hash'inimas
 userSchema.pre('save',function(next){
 	let user = this;
 	

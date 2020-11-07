@@ -5,19 +5,39 @@ let jwt = require('jsonwebtoken')
 let { jwtkey } = require('../config/keys')
 let router = express.Router();
 let User = mongoose.model('User');
+let Verification = mongoose.model('Verification');
 
-// router.get('/signup', (req, res) => {
-//     res.send('Registracija');
-// })
+//Funkcija generuojanti slapta rakta, kuris naudojamas patvirtinant vartotojo email
 
+let generateSecret = (lenght) => {
+    var secret = '';
+    var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    var charactersLength = characters.length;
+    for ( var i = 0; i < lenght; i++ ) {
+       secret += characters.charAt(Math.floor(Math.random() * charactersLength));
+    }
+    return secret;
+}
+
+//Funkcija generuojanti emailo patvirtinimui skirta link'a
+
+let generateLink = (hostname, secret) => {
+    return `${hostname}:${3000}/verifyEmail?${secret}`;
+}
+
+//Registracijos funkcija
 router.post('/signup', async (req, res) => {
-    let {username, email, password} = req.body;
+    let {username, email, password} = req.body; //Gaunami duomenys is input'u
     
     try{
         let user = new User({username, email, password});
-        await user.save();
+        await user.save(); //Sukuriamas vartotojas pagal schema ir issaugomas
+
+        let link = generateLink(req.hostname, generateSecret(10));
+        let verification = new Verification({email, link});
+        await verification.save(); //Sukuriamas ir issaugomas patvirtinimo link'as
         
-        let token = jwt.sign({userId:user._id}, jwtkey);
+        let token = jwt.sign({userId:user._id}, jwtkey); //Issaugomas web token'as
         res.send({token});
     }
     catch(err){
@@ -25,23 +45,92 @@ router.post('/signup', async (req, res) => {
     }
 })
 
+//Prisijungimo funkcija
 router.post('/signin', async (req, res) => {
     let {email, password} = req.body;
 
+    //Patikrinama ar vartotojas kazka ivede
     if(!email || !password){
         res.status(422).send({error: "Iveskite duomenis"});
     }
 
     let user = await User.findOne({email});
 
+    //Tikrinama ar toks vartotojas egzistuoja
     if(!user){
-        es.status(422).send({error: "Vartotojas neegzistuoja"});
+        res.status(422).send({error: "Vartotojas neegzistuoja"});
     }
     try{
         await user.comparePassword(password);
         let token = jwt.sign({userId:user._id}, jwtkey);
         res.send({token});
+        //Tikrinama ar slaptazodis.
+        //Jei teisingas, sukuriamas ir issaugomas web token'as (vartotojas prijungiamas)
     }catch(err){
+        res.status(422).send(err.message);
+    }
+})
+
+
+//Vartotojo patvirtinmo funkcija
+router.get('/verifyEmail', async(req, res) => {
+    let link = generateLink(req.hostname, req.query.s);
+
+    let verify = await Verification.findOne({link});
+    if(!verify){
+        res.status(422).send({error: 'Patvirtinimas nebegalioja'});
+    } //Tikrinama ar verify link'as nepasibaigusio galiojimo laiko ir(ar) nebuvo panaudotas
+
+    try{
+        await verify.verifyUser(verify.email); //Patvirtinamas vartotojas
+        res.send(`Vartotojas (${verify.email}) sekmingai patvirtintas`);
+    }
+    catch(err){
+        res.status(422).send(err.message);
+    }
+})
+
+router.get('/forgotPassword', async (req, res) => {
+    let {email} = req.body;
+    let link = generateLink(req.hostname, generateSecret(20));
+
+    let user = await User.findOne({email});
+    if(!user){
+        res.status(422).send({error: "Vartotojas neegzistuoja"});
+    }
+
+    if(!user.isVerified){
+        res.status(422).send({error: "Vartotojas nepatvirtintas"});
+    }
+
+    try{
+        let verification = new Verification({email, link});
+        await verification.save();
+        res.send("Slaptazodzio atstatymo laiskas issiustas");
+    }
+    catch(err){
+        res.status(422).send({error: "Nepavyko atstatyti slaptazodzio"});
+    }
+    
+})
+
+router.post('/resetPassword', async (req, res) => {
+    let {password, cpassword} = req.body;
+    let link = generateLink(req.hostname, req.query.s);
+    if(password !== cpassword){
+        res.status(422).send({error: "Slaptazodziai nesutampa"});
+    }
+
+    let verify = await Verification.findOne({link});
+    if(!verify){
+        res.status(422).send({error: 'Atsatymo prasymas nebegalioja'});
+    } //Tikrinama ar verify link'o galiojimo laikas pasibaiges ir(ar) nebuvo panaudotas
+
+    try{
+        await verify.changePassword(verify.email, password); //Patvirtinamas vartotojas
+        res.send(`Vartotojo (${verify.email}) slaptazodis sekmingai pakeistas`);
+    }
+    catch(err){
         res.status(422).send(err.message);
     }
 })
