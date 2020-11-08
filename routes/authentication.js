@@ -6,15 +6,15 @@ let { jwtkey } = require('../config/keys')
 let router = express.Router();
 let User = mongoose.model('User');
 let Verification = mongoose.model('Verification');
-let mailsender = require('../middleware/mailerSystem')
+let mailer = require('../middleware/mailerSystem')
 
 //Funkcija generuojanti slapta rakta, kuris naudojamas patvirtinant vartotojo email
 
-let generateSecret = (lenght) => {
+let generateSecret = (length) => {
     var secret = '';
     var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
     var charactersLength = characters.length;
-    for ( var i = 0; i < lenght; i++ ) {
+    for ( var i = 0; i < length; i++ ) {
        secret += characters.charAt(Math.floor(Math.random() * charactersLength));
     }
     return secret;
@@ -23,9 +23,19 @@ let generateSecret = (lenght) => {
 //Funkcija generuojanti emailo patvirtinimui skirta link'a
 
 let generateLink = (hostname, secret) => {
-    return `${hostname}:${3000}/verifyEmail?${secret}`;
+    return `${hostname}:${3000}/verifyEmail?s=${secret}`;
 }
 
+let sendMail = async(userEmail, link, messageString) => {
+	
+	let info = await mailer.transporter.sendMail({
+	from: 'orutislive@gmail.com', // sender
+	to: userEmail, // receiver
+	subject: "Orutis paskyros tvarkymas", // subject line
+	text: messageString + link, // plain text body
+	});
+	
+}
 //Registracijos funkcija
 router.post('/signup', async (req, res) => {
     let {username, email, password} = req.body; //Gaunami duomenys is input'u
@@ -41,8 +51,10 @@ router.post('/signup', async (req, res) => {
         
 		
         let token = jwt.sign({userId:user._id}, jwtkey); //Issaugomas web token'as
+	
+		sendMail(email, link, "Paspauskite šią nuorodą norėdami patvirtinti savo paskyrą: ");
+		console.log("Sent mail to: " + email);
 		
-		//mailsender.mailsender(email, link);
         res.send({token});
     }
     catch(err){
@@ -111,7 +123,8 @@ router.get('/forgotPassword', async (req, res) => {
     try{
         let verification = new Verification({email, link});
         await verification.save();
-		//mailsender.mailsender(email, link);
+		
+		sendMail(email, link, "Paspauskite šią nuorodą norėdami atkurti savo slaptažodį: ")
         res.send("Slaptazodzio atstatymo laiskas issiustas");
     }
     catch(err){
