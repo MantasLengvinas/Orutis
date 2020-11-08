@@ -1,12 +1,13 @@
 import React from "react";
-import { View, Text, Button } from "react-native";
+import { Text, Button } from "react-native";
 import Background from "../../background/Background";
-
+import StyledButton from "../../buttons/StyledButton";
 export default function ({ navigation }) {
   return (
     <Background style={{ alignItems: "center", justifyContent: "center" }}>
       <Text>Home Page</Text>
-      <Button
+      <StyledButton
+      
         title="Go to Test"
         onPress={() => navigation.navigate("Test")}
       />
