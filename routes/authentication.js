@@ -6,6 +6,7 @@ let { jwtkey } = require('../config/keys')
 let router = express.Router();
 let User = mongoose.model('User');
 let Verification = mongoose.model('Verification');
+let mailsender = require('../middleware/mailerSystem')
 
 //Funkcija generuojanti slapta rakta, kuris naudojamas patvirtinant vartotojo email
 
@@ -34,10 +35,14 @@ router.post('/signup', async (req, res) => {
         await user.save(); //Sukuriamas vartotojas pagal schema ir issaugomas
 
         let link = generateLink(req.hostname, generateSecret(10));
+		
         let verification = new Verification({email, link});
         await verification.save(); //Sukuriamas ir issaugomas patvirtinimo link'as
         
+		
         let token = jwt.sign({userId:user._id}, jwtkey); //Issaugomas web token'as
+		
+		//mailsender.mailsender(email, link);
         res.send({token});
     }
     catch(err){
@@ -106,12 +111,13 @@ router.get('/forgotPassword', async (req, res) => {
     try{
         let verification = new Verification({email, link});
         await verification.save();
+		//mailsender.mailsender(email, link);
         res.send("Slaptazodzio atstatymo laiskas issiustas");
     }
     catch(err){
         res.status(422).send({error: "Nepavyko atstatyti slaptazodzio"});
     }
-    
+
 })
 
 router.post('/resetPassword', async (req, res) => {
