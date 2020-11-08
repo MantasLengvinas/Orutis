@@ -4,9 +4,9 @@
     "slug": "FrontEnd",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/raster/icon.png",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/raster/splash.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -19,8 +19,14 @@
     "ios": {
       "supportsTablet": true
     },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/raster/adaptive-icon.png",
+        "backgroundColor": "#FFFFFF"
+      }
+    },
     "web": {
-      "favicon": "./assets/favicon.png"
+      "favicon": "./assets/raster/favicon.png"
     }
   }
 }

@@ -1,0 +1,15 @@
+/components  holds everything in this project.
+/screens     holds screens duh.
+/styles      should hold commonly used styles.
+/(someName)  for reusable components.     
+
+
+App.js is used for navigation only.
+to make new screen usable add this in App.js:
+    import NewScreen from "./components/screens/new-screen/NewScreen";
+
+and in commented part add this:
+    <Stack.Screen name="ScreenName" component={NewScreen} />
+
+
+gl hf

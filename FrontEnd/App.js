@@ -1,27 +1,26 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View, Button } from 'react-native';
+import React from "react";
+import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
+
+import HomeScreen from "./components/screens/home/Home";
+import TestScreen from "./components/screens/test-screen/TestScreen";
+
+const Stack = createStackNavigator();
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Button
-      onPress={()=> console.log("pride")}
-      title="Gay"
-      color="#841584"
-      accessibilityLabel="Learn more about this purple button"
-      />
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator
+        initialRouteName="Home"
+        screenOptions={{
+          headerShown: false,
+        }}
+      >
+        {/*Screens list from here */}
+        <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Screen name="Test" component={TestScreen} />
+        {/*Screens list end here */}
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
