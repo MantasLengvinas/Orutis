@@ -1,1 +1,1 @@
-# Kompiuterių architektūros projektas
+# Orutis app
