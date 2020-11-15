@@ -3,41 +3,41 @@ import { StyleSheet, Text, TouchableOpacity } from "react-native";
 
 import { LinearGradient } from "expo-linear-gradient";
 
-function StyledButton({title,onPress}) {
+function StyledButton({onPress, children }) {
   return (
-    <TouchableOpacity 
-      color= "rgba(0,0,0,0)"
-      style={{elevation: 0}}
+    <TouchableOpacity
+      // color= "rgba(0,0,0,0)"
+      // style={{elevation: 0}}
       onPress={onPress}
-      >
+    >
       <LinearGradient
         // Background Linear Gradient
         colors={["rgb(39, 111, 214)", "rgb(15,62,128)"]}
         style={styles.linearGradient}
       >
-        <Text style={styles.buttonText}>{title}</Text>
+        <Text style={styles.buttonText}>{children}</Text>
       </LinearGradient>
-      </TouchableOpacity>
+    </TouchableOpacity>
   );
 }
 export default StyledButton;
 
-const styles = StyleSheet.create ({
+const styles = StyleSheet.create({
   linearGradient: {
-    padding:0,
+    padding: 0,
     borderRadius: 25,
-    borderColor: 'grey',
+    borderColor: "grey",
     borderWidth: 0.8,
     width: 320,
     height: 50,
+    justifyContent:'center',
   },
   buttonText: {
-    textAlign: 'center',
-    color: 'white',
-    fontWeight: 'bold',
-    padding: 7.5,
+    textAlign: "center",
+    color: "white",
+    fontWeight: "bold",
     fontSize: 20,
-  }
+  },
 });
 
 //<Button
