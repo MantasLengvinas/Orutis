@@ -2,11 +2,6 @@ let mongoose = require('mongoose');
 let bcrypt = require('bcrypt');
 let User = mongoose.model('User');
 
-//Nustatomas laikas iki kada galioja patvirtinimo linkas
-let dn = new Date(),
-    dt = new Date(dn);
-dt.setMinutes(dn.getMinutes() + 10);
-
 //Patvirtinimo linko schema, pagal kuria saugomi duomenys duomenu bazeje
 
 let verificationSchema = new mongoose.Schema({
@@ -24,7 +19,8 @@ let verificationSchema = new mongoose.Schema({
     },
     activeTo: {
         type: Date,
-        default: dt
+        default: Date.now,
+        expires: 600
     }
 })
 
