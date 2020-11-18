@@ -5,7 +5,7 @@ let mongoose = require('mongoose')
 
 //Pagrindiniu kintamuju defininimas
 let app = express()
-let port = 3000;
+let port = 3000 || process.env.PORT;
 let { DB_url } = require('./config/keys')
 
 //Middleware includinimas
