@@ -4,7 +4,8 @@
   "description": "",
   "main": "main.js",
   "scripts": {
-    "dev": "nodemon main.js"
+    "dev": "nodemon index.js",
+    "start": "node index.js"
   },
   "author": "Mantas Lengvinas",
   "license": "MIT",
