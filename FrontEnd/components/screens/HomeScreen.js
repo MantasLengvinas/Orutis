@@ -3,7 +3,7 @@ import { Text, Button, View, StyleSheet } from "react-native";
 
 import Background from "../background/Background";
 import StyledButton from "../buttons/StyledButton";
-import MyHeader from "../Header/MyHeader";
+import MyHeader from "../header/MyHeader";
 import TextStyles  from "../text/Text";
 
 export default function ({ navigation }) {

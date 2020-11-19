@@ -2,7 +2,7 @@ import React from "react";
 import { View, Text, Button } from "react-native";
 
 import Background from "../background/Background";
-import MyHeader from "../Header/MyHeader";
+import MyHeader from "../header/MyHeader";
 
 export default function ({ navigation }) {
   return (
