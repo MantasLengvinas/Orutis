@@ -1,5 +1,6 @@
 import React from "react";
 import { View, Text, Button } from "react-native";
+
 import Background from "../background/Background";
 import MyHeader from "../Header/MyHeader";
 

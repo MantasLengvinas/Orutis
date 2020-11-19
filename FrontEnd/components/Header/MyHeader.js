@@ -14,7 +14,8 @@ export default function ({ navigation }) {
         </TouchableOpacity>
       </View>
     );
-  } else {
+  } 
+  else {
     return <></>;
   }
 }
