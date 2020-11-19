@@ -13,8 +13,7 @@ function LoginButton({ children, iconName }) {
     }
     return (
         <TouchableOpacity style={styles.button}>
-            {icon}
-            <Text style={TextStyles.button}>{children}</Text>
+            <Text style={TextStyles.button}>{icon} {children}</Text>
         </TouchableOpacity>
     );
 }
@@ -22,7 +21,6 @@ export default LoginButton;
 
 const styles = StyleSheet.create({
     button: {
-        paddingLeft: 30,
         backgroundColor: "#7C92BF",
         borderRadius: 25,
         borderColor: "grey",
