@@ -2,8 +2,9 @@ import React from "react";
 import { View, Text, Button } from "react-native";
 
 import Background from "../background/Background";
-import MyHeader from "../Header/MyHeader";
 import TextStyles  from "../styles/Text";
+import MyHeader from "../header/MyHeader";
+
 
 export default function ({ navigation }) {
   return (

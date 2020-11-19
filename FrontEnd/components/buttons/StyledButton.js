@@ -34,10 +34,3 @@ const styles = StyleSheet.create({
     justifyContent:'center',
   },
 });
-
-//<Button
-//        title={title}
-//        onPress={onPress}
-//        color="rgba(0,0,0,0)"
-//        style={{elevation: 0,}}
-//      />
