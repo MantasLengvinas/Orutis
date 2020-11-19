@@ -3,9 +3,9 @@ import { Text, Button, View, StyleSheet } from "react-native";
 
 import Background from "../background/Background";
 import StyledButton from "../buttons/StyledButton";
-
 import MyHeader from "../header/MyHeader";
 import TextStyles  from "../styles/Text";
+import LoginButton from "../buttons/LoginButton"
 
 export default function ({ navigation }) {
   return (
@@ -18,7 +18,7 @@ export default function ({ navigation }) {
             <StyledButton onPress={() => navigation.navigate("Test")}>Registruotis</StyledButton>
           </View>
           <View style={{ marginBottom: 40 }}>
-            <StyledButton>Prisijunk su Facebook</StyledButton>
+            <LoginButton>Prisijunk su Facebook</LoginButton>
           </View>
         </View>
       </View>
