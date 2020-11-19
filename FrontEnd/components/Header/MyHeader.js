@@ -5,7 +5,7 @@ import { AntDesign } from "@expo/vector-icons";
 export default function ({ navigation }) {
   if (navigation) {
     return (
-      <View style={{flexDirection:"row",justifyContent:'space-between'}}>
+      <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
         <TouchableOpacity onPress={() => navigation.goBack()} style={{ margin: 5 }}>
           <AntDesign name="arrowleft" size={32} color="black" />
         </TouchableOpacity>
@@ -15,6 +15,12 @@ export default function ({ navigation }) {
       </View>
     );
   } else {
-    return <></>;
+    return (
+      <View style={{ flexDirection: "row", justifyContent: "flex-end" }}>
+        <TouchableOpacity onPress={() => navigation.navigate("Settings")} style={{ margin: 5 }}>
+          <AntDesign name="setting" size={32} color="black" />
+        </TouchableOpacity>
+      </View>
+    );
   }
 }
