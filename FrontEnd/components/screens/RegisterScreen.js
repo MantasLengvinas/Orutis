@@ -3,6 +3,7 @@ import { View, Text, Button, StyleSheet } from "react-native";
 
 import Background from "../background/Background";
 import TextStyles  from "../styles/Text";
+import InputStyles from "../styles/Input"
 import MyHeader from "../header/MyHeader";
 import { TextInput } from "react-native-gesture-handler";
 import StyledButton from "../buttons/StyledButton";
@@ -17,16 +18,16 @@ export default function ({ navigation }) {
       <View style={{alignItems: "center", justifyContent: "center", marginTop: 60}}>
       <TextInput 
         placeholder="Vartotojo vardas"
-        style={styles.input}
+        style={InputStyles.inputField}
       />
       <TextInput 
         placeholder="El. Paštas"
-        style={styles.input}
+        style={InputStyles.inputField}
       />
       <TextInput
         secureTextEntry={true} 
         placeholder="Slaptažodis"
-        style={styles.input}
+        style={InputStyles.inputField}
       />
       </View>
       <View style={{alignItems: "center", justifyContent: "center", marginTop: 20}}>
@@ -42,18 +43,6 @@ export default function ({ navigation }) {
 }
 
 const styles = StyleSheet.create({
-  input: {
-    borderWidth: 0.8,
-    borderColor: "grey",
-    borderRadius: 25,
-    width: 320,
-    height: 50,
-    backgroundColor: "white",
-    marginTop: 10,
-    paddingLeft: 20,
-    fontWeight: 450,
-    fontSize: 15
-  },
   privacy: {
     fontWeight: "bold",
     color: 'dark-blue',
