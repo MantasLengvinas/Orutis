@@ -7,6 +7,12 @@ export default StyleSheet.create({
     fontWeight: "bold",
     fontSize: 26,
   },
+  iconButton: {
+    textAlign: "center",
+    color: "white",
+    fontWeight: "bold",
+    fontSize: 24,
+  },
   general: {
     textAlign: "center",
     color: "#3A3434",

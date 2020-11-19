@@ -16,7 +16,7 @@ function LoginButton({ children, iconName }) {
     }
     return (
         <TouchableOpacity style={styles.button}>
-            <Text style={TextStyles.button}>{icon} {children}</Text>
+            <Text style={TextStyles.iconButton}>{icon} {children}</Text>
         </TouchableOpacity>
     );
 }
