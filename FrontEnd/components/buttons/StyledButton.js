@@ -1,7 +1,8 @@
 import React from "react";
 import { StyleSheet, Text, TouchableOpacity } from "react-native";
-
 import { LinearGradient } from "expo-linear-gradient";
+
+import TextStyles  from "../text/Text";
 
 function StyledButton({onPress, children }) {
   return (
@@ -15,7 +16,7 @@ function StyledButton({onPress, children }) {
         colors={["rgb(39, 111, 214)", "rgb(15,62,128)"]}
         style={styles.linearGradient}
       >
-        <Text style={styles.buttonText}>{children}</Text>
+        <Text style={TextStyles.button}>{children}</Text>
       </LinearGradient>
     </TouchableOpacity>
   );
@@ -31,12 +32,6 @@ const styles = StyleSheet.create({
     width: 320,
     height: 50,
     justifyContent:'center',
-  },
-  buttonText: {
-    textAlign: "center",
-    color: "white",
-    fontWeight: "bold",
-    fontSize: 20,
   },
 });
 

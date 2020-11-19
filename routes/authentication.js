@@ -32,7 +32,7 @@ let sendMail = async(userEmail, link, messageString) => {
 	from: 'orutislive@gmail.com', // sender
 	to: userEmail, // receiver
 	subject: "Orutis paskyros tvarkymas", // subject line
-	text: messageString + link, // plain text body
+	html: `<b>${messageString}</b> <a href="${link}">${link}</a>`, // plain text body
 	});
 	
 }
@@ -129,6 +129,25 @@ router.get('/forgotPassword', async (req, res) => {
     }
     catch(err){
         res.status(422).send({error: "Nepavyko atstatyti slaptazodzio"});
+    }
+
+})
+
+router.get('/resendEmail', async (req, res) => {
+    let {email} = req.body;
+    let link = generateLink(req.hostname, generateSecret(10));
+
+    try{
+        let verification = new Verification({email, link});
+        await verification.save();
+    
+        sendMail(email, link, "Paspauskite šią nuorodą norėdami patvirtinti savo paskyrą: ");
+        console.log("Sent mail to: " + email);
+
+        res.send("Patvirtinimo laiškas išsiųstas adresu: " + email);
+    }
+    catch(err){
+        res.status(422).send("Laisko issiusti nepavyko");
     }
 
 })

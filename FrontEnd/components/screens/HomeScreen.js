@@ -1,14 +1,17 @@
 import React from "react";
 import { Text, Button, View, StyleSheet } from "react-native";
+
 import Background from "../background/Background";
 import StyledButton from "../buttons/StyledButton";
 import MyHeader from "../Header/MyHeader";
+import TextStyles  from "../text/Text";
+
 export default function ({ navigation }) {
   return (
     <Background>
       <MyHeader/>
       <View style={{flex:1, alignItems: "center", justifyContent: "center" }}>
-        <Text>Home Page</Text>
+        <Text style={TextStyles.general}>Kur keliausite šiandien?</Text>
         <View style={styles.bottomContainer}>
           <View style={{ marginBottom: 10 }}>
             <StyledButton onPress={() => navigation.navigate("Test")}>Registruotis</StyledButton>
