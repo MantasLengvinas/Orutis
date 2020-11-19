@@ -11,7 +11,7 @@ export default StyleSheet.create({
     textAlign: "center",
     color: "white",
     fontWeight: "bold",
-    fontSize: 24,
+    fontSize: 23,
   },
   general: {
     textAlign: "center",
