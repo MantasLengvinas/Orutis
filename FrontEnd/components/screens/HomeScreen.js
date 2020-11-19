@@ -4,7 +4,7 @@ import { Text, Button, View, StyleSheet } from "react-native";
 import Background from "../background/Background";
 import StyledButton from "../buttons/StyledButton";
 import MyHeader from "../Header/MyHeader";
-import TextStyles  from "../text/Text";
+import TextStyles  from "../styles/Text";
 
 export default function ({ navigation }) {
   return (
