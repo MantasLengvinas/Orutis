@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, Button, View, StyleSheet } from "react-native";
+import { Text, View, StyleSheet } from "react-native";
 
 import Background from "../background/Background";
 import StyledButton from "../buttons/StyledButton";
@@ -10,15 +10,12 @@ import TextStyles  from "../styles/Text";
 export default function ({ navigation }) {
   return (
     <Background>
-      <MyHeader navigation={navigation} goBack={false}/>
+      <MyHeader navigation={navigation}/>
       <View style={{flex:1, alignItems: "center", justifyContent: "center" }}>
-        <Text style={TextStyles.general}>Kur keliausite šiandien?</Text>
+        <Text style={TextStyles.general}>Nustatymai</Text>
         <View style={styles.bottomContainer}>
-          <View style={{ marginBottom: 10 }}>
-            <StyledButton onPress={() => navigation.navigate("Test")}>Registruotis</StyledButton>
-          </View>
           <View style={{ marginBottom: 40 }}>
-            <StyledButton>Prisijunk su Facebook</StyledButton>
+            <StyledButton>Atsijungti</StyledButton>
           </View>
         </View>
       </View>
