@@ -45,7 +45,7 @@ export default function ({ navigation }) {
 const styles = StyleSheet.create({
   privacy: {
     fontWeight: "bold",
-    color: 'dark-blue',
+    color: 'blue',
     textAlign: "center",
     width: 225,
     marginTop: 20,

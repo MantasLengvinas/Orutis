@@ -10,7 +10,7 @@ export default StyleSheet.create({
   general: {
     textAlign: "center",
     color: "#3A3434",
-    fontWeight: 750,
+    fontWeight: "700",
     fontSize: 26,
   }
 })

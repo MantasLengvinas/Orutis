@@ -10,7 +10,7 @@ export default StyleSheet.create({
     backgroundColor: "white",
     marginTop: 10,
     paddingLeft: 20,
-    fontWeight: 450,
+    fontWeight: "400",
     fontSize: 15
   },
 })
