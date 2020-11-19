@@ -23,6 +23,9 @@ let generateSecret = (length) => {
 //Funkcija generuojanti emailo patvirtinimui skirta link'a
 
 let generateLink = (hostname, secret) => {
+    if(hostname !== "localhost"){
+        return `${hostname}/verifyEmail?s=${secret}`;
+    }
     return `${hostname}:${3000}/verifyEmail?s=${secret}`;
 }
 
