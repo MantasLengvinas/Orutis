@@ -4,7 +4,7 @@ export default StyleSheet.create({
   button: {
     textAlign: "center",
     color: "white",
-    fontWeight: 750,
+    fontWeight: "bold",
     fontSize: 26,
   },
   general: {

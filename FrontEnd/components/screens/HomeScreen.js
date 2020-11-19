@@ -17,7 +17,7 @@ export default function ({ navigation }) {
         <View style={styles.bottomContainer}>
           <Icon />
           <View style={{ marginBottom: 10 }}>
-            <StyledButton onPress={() => navigation.navigate("Test")}>Registruotis</StyledButton>
+            <StyledButton onPress={() => navigation.navigate("Register")}>Registruotis</StyledButton>
           </View>
           <View style={{ marginBottom: 10 }}>
             <LoginButton iconName="Facebook">Prisijunk su Facebook</LoginButton>
