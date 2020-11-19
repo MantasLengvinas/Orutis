@@ -2,7 +2,7 @@ import React from "react";
 import { StyleSheet, Text, TouchableOpacity } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 
-import TextStyles  from "../text/Text";
+import TextStyles  from "../styles/Text";
 
 function StyledButton({onPress, children }) {
   return (
@@ -34,10 +34,3 @@ const styles = StyleSheet.create({
     justifyContent:'center',
   },
 });
-
-//<Button
-//        title={title}
-//        onPress={onPress}
-//        color="rgba(0,0,0,0)"
-//        style={{elevation: 0,}}
-//      />
