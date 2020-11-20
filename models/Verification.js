@@ -1,6 +1,7 @@
 let mongoose = require('mongoose');
 let bcrypt = require('bcrypt');
 let User = mongoose.model('User');
+let { messages } = require('../config/keys')
 
 //Patvirtinimo linko schema, pagal kuria saugomi duomenys duomenu bazeje
 
@@ -32,10 +33,10 @@ verificationSchema.methods.verifyUser = async function(email) {
     return new Promise((resolve, reject) => {
         user.isVerified = true;
         if(!verify.deleteOne({email})){ //Jei del klaidos nepavyktu istrinti verify linko, patvirtinimas nebutu vykdomas
-            return reject("Failed to delete verification");
+            return reject(messages.error.failedToDeleteVerification);
         }
         if(!user.save()){ //Jei nepavyktu patvirtint vartotojo, butu grazinama klaida
-            return reject("User not verified");
+            return reject(messages.error.failedToVerifyUser);
         }
         resolve(true);
     })
@@ -56,10 +57,10 @@ verificationSchema.methods.changePassword = async function(email, password) {
                 
                 user.password = hash;
                 if(!verify.deleteOne({email})){ //Jei del klaidos nepavyktu istrinti verify linko, patvirtinimas nebutu vykdomas
-                    return reject("Failed to delete verification");
+                    return reject(messages.error.failedToDeletePasswordResetRequest);
                 }
                 if(!user.save()){
-                    return reject("Nepavyko pakeisti slaptazodzio");
+                    return reject(messages.error.failedToResetPassword);
                 }
                 resolve(true);
             });
