@@ -9,6 +9,9 @@
   },
   "author": "Mantas Lengvinas",
   "license": "MIT",
+  "engines": {
+    "node": "v14.15.0"
+  },
   "dependencies": {
     "bcrypt": "^5.0.0",
     "body-parser": "^1.19.0",

@@ -2,7 +2,7 @@ let express = require('express')
 let mongoose = require('mongoose')
 let jwt = require('jsonwebtoken')
 
-let { jwtkey } = require('../config/keys')
+let { jwtkey, messages } = require('../config/keys')
 let router = express.Router();
 let User = mongoose.model('User');
 let Verification = mongoose.model('Verification');
@@ -23,16 +23,27 @@ let generateSecret = (length) => {
 //Funkcija generuojanti emailo patvirtinimui skirta link'a
 
 let generateLink = (hostname, secret) => {
+    if(hostname !== "localhost"){
+        return `${hostname}/verifyEmail?s=${secret}`;
+    }
     return `${hostname}:${3000}/verifyEmail?s=${secret}`;
 }
 
-let sendMail = async(userEmail, link, messageString) => {
+let sendMail = async(userEmail, link, subj, messageString) => {
+
+    let message;
+    if(link != null){
+        message = messageString + `<a href="${link}">${link}</a>`;
+    }
+    else{
+        message = messageString;
+    }
 	
 	let info = await mailer.transporter.sendMail({
 	from: 'orutislive@gmail.com', // sender
 	to: userEmail, // receiver
-	subject: "Orutis paskyros tvarkymas", // subject line
-	html: `<b>${messageString}</b> <a href="${link}">${link}</a>`, // plain text body
+	subject: subj, // subject line
+	html: message,
 	});
 	
 }
@@ -52,7 +63,7 @@ router.post('/signup', async (req, res) => {
 		
         let token = jwt.sign({userId:user._id}, jwtkey); //Issaugomas web token'as
 	
-		sendMail(email, link, "Paspauskite šią nuorodą norėdami patvirtinti savo paskyrą: ");
+		sendMail(email, link, "Orutis paskyros tvarkymas", messages.requests.emailVerification);
 		console.log("Sent mail to: " + email);
 		
         res.send({token});
@@ -68,14 +79,14 @@ router.post('/signin', async (req, res) => {
 
     //Patikrinama ar vartotojas kazka ivede
     if(!email || !password){
-        res.status(422).send({error: "Iveskite duomenis"});
+        res.status(422).send({error: messages.error.noInput});
     }
 
     let user = await User.findOne({email});
 
     //Tikrinama ar toks vartotojas egzistuoja
     if(!user){
-        res.status(422).send({error: "Vartotojas neegzistuoja"});
+        res.status(422).send({error: messages.error.userDoNotExist});
     }
     try{
         await user.comparePassword(password);
@@ -94,13 +105,15 @@ router.get('/verifyEmail', async(req, res) => {
     let link = generateLink(req.hostname, req.query.s);
 
     let verify = await Verification.findOne({link});
+    let e = verify.email;
     if(!verify){
-        res.status(422).send({error: 'Patvirtinimas nebegalioja'});
+        res.status(422).send({error: messages.error.verificationExpired});
     } //Tikrinama ar verify link'as nepasibaigusio galiojimo laiko ir(ar) nebuvo panaudotas
 
     try{
         await verify.verifyUser(verify.email); //Patvirtinamas vartotojas
-        res.send(`Vartotojas (${verify.email}) sekmingai patvirtintas`);
+        sendMail(e, null, "Sveiki atvykę!", messages.success.welcome);
+        res.send(`Vartotojas (${verify.email}) sekmingai patvirtintas`);     
     }
     catch(err){
         res.status(422).send(err.message);
@@ -113,22 +126,22 @@ router.get('/forgotPassword', async (req, res) => {
 
     let user = await User.findOne({email});
     if(!user){
-        res.status(422).send({error: "Vartotojas neegzistuoja"});
+        res.status(422).send({error: messages.error.userDoNotExist});
     }
 
     if(!user.isVerified){
-        res.status(422).send({error: "Vartotojas nepatvirtintas"});
+        res.status(422).send({error: messages.error.userIsNotVerified});
     }
 
     try{
         let verification = new Verification({email, link});
         await verification.save();
 		
-		sendMail(email, link, "Paspauskite šią nuorodą norėdami atkurti savo slaptažodį: ")
+		sendMail(email, link, "Orutis paskyros tvarkymas", messages.requests.passwordReset);
         res.send("Slaptazodzio atstatymo laiskas issiustas");
     }
     catch(err){
-        res.status(422).send({error: "Nepavyko atstatyti slaptazodzio"});
+        res.status(422).send({error: messages.error.failedToResetPassword});
     }
 
 })
@@ -141,13 +154,13 @@ router.get('/resendEmail', async (req, res) => {
         let verification = new Verification({email, link});
         await verification.save();
     
-        sendMail(email, link, "Paspauskite šią nuorodą norėdami patvirtinti savo paskyrą: ");
+        sendMail(email, link, "Orutis paskyros tvarkymas", messages.requests.emailVerification);
         console.log("Sent mail to: " + email);
 
         res.send("Patvirtinimo laiškas išsiųstas adresu: " + email);
     }
     catch(err){
-        res.status(422).send("Laisko issiusti nepavyko");
+        res.status(422).send(messages.error.failedToSendEmail);
     }
 
 })
@@ -156,12 +169,12 @@ router.post('/resetPassword', async (req, res) => {
     let {password, cpassword} = req.body;
     let link = generateLink(req.hostname, req.query.s);
     if(password !== cpassword){
-        res.status(422).send({error: "Slaptazodziai nesutampa"});
+        res.status(422).send({error: messages.error.enteredPasswordsDoNotMatch});
     }
 
     let verify = await Verification.findOne({link});
     if(!verify){
-        res.status(422).send({error: 'Atsatymo prasymas nebegalioja'});
+        res.status(422).send({error: messages.error.passwordResetExpired});
     } //Tikrinama ar verify link'o galiojimo laikas pasibaiges ir(ar) nebuvo panaudotas
 
     try{

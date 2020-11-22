@@ -1,6 +1,7 @@
 import React from "react";
 import { View, TouchableOpacity } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
+import LoginButtonTop from "../buttons/LoginButtonTop";
 
 export default function ({ navigation ,goBack }) {
   if (goBack) {
@@ -16,7 +17,9 @@ export default function ({ navigation ,goBack }) {
     );
   } else {
     return (
-      <View style={{ flexDirection: "row", justifyContent: "flex-end" }}>
+      <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
+        <View>
+        </View>
         <TouchableOpacity onPress={() => navigation.navigate("Settings")} style={{ margin: 5 }}>
           <AntDesign name="setting" size={32} color="black" />
         </TouchableOpacity>
