@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "FrontEnd",
-    "slug": "FrontEnd",
+    "name": "Orutis",
+    "slug": "orutis",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/raster/icon.png",
@@ -23,7 +23,8 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/raster/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
-      }
+      },
+      "package": "com.projektas.orutis"
     },
     "web": {
       "favicon": "./assets/raster/favicon.png"
