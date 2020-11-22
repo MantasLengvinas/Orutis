@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "FrontEnd",
-    "slug": "FrontEnd",
+    "name": "Orutis",
+    "slug": "orutis",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/raster/icon.png",
@@ -27,6 +27,7 @@
     },
     "web": {
       "favicon": "./assets/raster/favicon.png"
-    }
+    },
+    "description": ""
   }
 }

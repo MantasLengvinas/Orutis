@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import { View, Text, Button, StyleSheet } from "react-native";
 
 import Background from "../background/Background";
@@ -11,6 +11,18 @@ import Icon from "../images/Icon";
 
 
 export default function ({ navigation }) {
+
+  let [username, setUsername] = useState('')
+  let [email, setEmail] = useState('')
+  let [password, setPassword] = useState('')
+
+  let sendCred = () => {
+    fetch("http://orutis.herokuapp.com")
+    .then(res => res.json())
+    .then(data => {
+      console.log(data);
+    })
+  }
   return (
     <Background style={{flex: 1, alignItems: "center", justifyContent: "center"}}>
       <MyHeader navigation={navigation}/>
@@ -18,20 +30,29 @@ export default function ({ navigation }) {
       <View style={{alignItems: "center", justifyContent: "center", marginTop: 60}}>
       <TextInput 
         placeholder="Vartotojo vardas"
+        value = {username}
         style={InputStyles.inputField}
+        onChangeText = {(text) => setUsername(text)}
       />
       <TextInput 
         placeholder="El. Paštas"
+        value = {email}
         style={InputStyles.inputField}
+        onChangeText = {(text) => setEmail(text)}
       />
       <TextInput
         secureTextEntry={true} 
         placeholder="Slaptažodis"
+        value = {password}
         style={InputStyles.inputField}
+        onChangeText = {(text) => setPassword(text)}
       />
       </View>
       <View style={{alignItems: "center", justifyContent: "center", marginTop: 20}}>
-        <StyledButton style={{marginTop: 20}}>Registruotis</StyledButton>
+        <StyledButton 
+          style={{marginTop: 20}}
+          onPress = {() => sendCred()}
+        >Registruotis</StyledButton>
         <Text style={styles.privacy}>Registruodamiesi sutinkate su mūsų privatumo politika</Text>
       </View>
       <View style={{alignItems: "center", justifyContent: "center", marginTop: 20}}>
