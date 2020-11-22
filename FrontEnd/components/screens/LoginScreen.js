@@ -13,7 +13,7 @@ import Icon from "../images/Icon";
 export default function ({ navigation }) {
   return (
     <Background style={{flex: 1, alignItems: "center", justifyContent: "center"}}>
-      <MyHeader navigation={navigation}/>
+      <MyHeader navigation={navigation} goBack={true}/>
       <Text style={[TextStyles.general, {marginTop: 40}]}>Prisijunkite</Text>
       <View style={{alignItems: "center", justifyContent: "center", marginTop: 60}}>
        <TextInput 

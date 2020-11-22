@@ -10,7 +10,7 @@ import TextStyles  from "../styles/Text";
 export default function ({ navigation }) {
   return (
     <Background>
-      <MyHeader navigation={navigation}/>
+      <MyHeader navigation={navigation} goBack={true}/>
       <View style={{flex:1, alignItems: "center", justifyContent: "center" }}>
         <Text style={TextStyles.general}>Nustatymai</Text>
         <View style={styles.bottomContainer}>
