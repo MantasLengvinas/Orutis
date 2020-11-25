@@ -13,6 +13,8 @@ import Icon from "../images/Icon";
 
 export default function ({ navigation }) {
 
+  /////////////////////BACK-END/////////////////////////////////////////
+
   let [username, setUsername] = useState('')
   let [email, setEmail] = useState('')
   let [password, setPassword] = useState('')
@@ -43,6 +45,8 @@ export default function ({ navigation }) {
         console.log(err);
       })
   }
+
+  /////////////////////BACK-END/////////////////////////////////////////
   return (
     <Background style={{flex: 1, alignItems: "center", justifyContent: "center"}}>
       <MyHeader navigation={navigation}/>
