@@ -2,6 +2,7 @@
 let express = require('express')
 let bodyParser = require('body-parser')
 let mongoose = require('mongoose')
+let cors = require('cors')
 
 //Pagrindiniu kintamuju defininimas
 let app = express()
@@ -9,6 +10,14 @@ let port = process.env.PORT || 3000;
 let { DB_url } = require('./config/keys')
 
 //Middleware includinimas
+
+//CORS policy blokavimo prevencija
+app.options('*', cors())
+app.use(function (req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    next();
+ })
+ 
 require('./models/User');
 require('./models/Verification')
 let authRoutes = require('./routes/authentication')

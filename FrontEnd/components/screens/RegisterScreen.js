@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import { View, Text, Button, StyleSheet } from "react-native";
 
+import AsyncStorage from "@react-native-community/async-storage";
 import Background from "../background/Background";
 import TextStyles  from "../styles/Text";
 import InputStyles from "../styles/Input"
@@ -17,11 +18,30 @@ export default function ({ navigation }) {
   let [password, setPassword] = useState('')
 
   let sendCred = () => {
-    fetch("http://orutis.herokuapp.com")
-    .then(res => res.json())
-    .then(data => {
-      console.log(data);
-    })
+      fetch("http://192.168.1.101:3000/signup", {
+        method: "POST",
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          "username": username,
+          "email": email,
+          "password": password
+        })
+      })
+      .then(res => res.json())
+      .then(async (data) => {
+          console.log(data);
+          try {
+            await AsyncStorage.setItem("token", data.token)
+          }
+          catch(err) {
+            console.log(err);
+          }
+      })
+      .catch(err => {
+        console.log(err);
+      })
   }
   return (
     <Background style={{flex: 1, alignItems: "center", justifyContent: "center"}}>
@@ -51,7 +71,7 @@ export default function ({ navigation }) {
       <View style={{alignItems: "center", justifyContent: "center", marginTop: 20}}>
         <StyledButton 
           style={{marginTop: 20}}
-          onPress = {() => sendCred()}
+          onPress = {sendCred}
         >Registruotis</StyledButton>
         <Text style={styles.privacy}>Registruodamiesi sutinkate su mūsų privatumo politika</Text>
       </View>
