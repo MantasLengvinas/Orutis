@@ -6,6 +6,10 @@ import HomeScreen from "./components/screens/HomeScreen";
 import Settings   from "./components/screens/Settings";
 import RegisterScreen from "./components/screens/RegisterScreen";
 import LoginScreen from "./components/screens/LoginScreen";
+import ForgotPassword from "./components/screens/ForgotPassword";
+import Confirmation from "./components/screens/Confirmation";
+import Main from "./components/screens/questionnaire/Main";
+import Question1 from "./components/screens/questionnaire/Question1";
 
 const Stack = createStackNavigator();
 //weather data
@@ -41,6 +45,11 @@ export default function App() {
         <Stack.Screen name="Settings" component={Settings} />
         <Stack.Screen name="Register" component={RegisterScreen} />
         <Stack.Screen name="Login" component={LoginScreen} />
+        <Stack.Screen name="ForgotPassword" component={ForgotPassword} />
+        <Stack.Screen name="Confirmation" component={Confirmation} />
+        <Stack.Screen name="Main" component={Main} />
+        <Stack.Screen name="Question1" component={Question1} />
+
         {/*Screens list end here */}
         
       </Stack.Navigator>

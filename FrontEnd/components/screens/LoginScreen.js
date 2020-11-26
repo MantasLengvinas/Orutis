@@ -28,11 +28,11 @@ export default function ({ navigation }) {
       </View>
       <View style={{alignItems: "center", justifyContent: "center", marginTop: 20}}>
         <StyledButton style={{marginTop: 20}}>Prisijungti</StyledButton>
-        <Text style={styles.privacy}>Registruodamiesi sutinkate su mūsų privatumo politika</Text>
+              <Text onPress={() => navigation.navigate("ForgotPassword")} style={styles.privacy}>Pamiršote slaptažodį?</Text>
       </View>
       <View style={{alignItems: "center", justifyContent: "center", marginTop: 20}}>
         <Icon/>
-        <Text style={{fontWeight: "bold", color: 'black', fontSize: 20}}>Neturi paskyros?</Text>
+              <Text onPress={() => navigation.navigate("Register")} style={{fontWeight: "bold", color: 'black', fontSize: 20}}>Neturi paskyros?</Text>
       </View>
     </Background>
   );

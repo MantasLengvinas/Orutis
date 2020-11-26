@@ -11,7 +11,6 @@ import Icon from "../images/Icon";
 
 export default function ({ navigation }) {
   return (
-    <ScrollView>
       <Background style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
         <MyHeader navigation={navigation} goBack={true} />
         <Text style={[TextStyles.general, { marginTop: 40 }]}>Registracija</Text>
@@ -21,15 +20,14 @@ export default function ({ navigation }) {
           <TextInput secureTextEntry={true} placeholder="Slaptažodis" style={InputStyles.inputField} />
         </View>
         <View style={{ alignItems: "center", justifyContent: "center", marginTop: 20 }}>
-          <StyledButton style={{ marginTop: 20 }}>Registruotis</StyledButton>
+              <StyledButton onPress={() => navigation.navigate("Main")} style={{ marginTop: 20 }}>Registruotis</StyledButton>
           <Text style={styles.privacy}>Registruodamiesi sutinkate su mūsų privatumo politika</Text>
         </View>
         <View style={{ alignItems: "center", justifyContent: "center", marginTop: 20 }}>
           <Icon />
-          <Text style={{ fontWeight: "bold", color: "black", fontSize: 20 }}>Jau turi paskyrą?</Text>
+              <Text onPress={() => navigation.navigate("Login")} style={{ fontWeight: "bold", color: "black", fontSize: 20 }}>Jau turi paskyrą?</Text>
         </View>
       </Background>
-    </ScrollView>
   );
 }
 
