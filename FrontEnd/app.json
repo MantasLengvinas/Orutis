@@ -21,7 +21,7 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/raster/adaptive-icon.png",
+        "foregroundImage": "./assets/raster/icon.png",
         "backgroundColor": "#FFFFFF"
       },
       "package": "com.projektas.orutis"
