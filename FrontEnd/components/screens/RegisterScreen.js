@@ -12,7 +12,7 @@ import Icon from "../images/Icon";
 
 export default function ({ navigation }) {
 
-  /////////////////////BACK-END/////////////////////////////////////////
+  /////////////////////BACK-END//////////////////////////////////////////
 
   let [username, setUsername] = useState('')
   let [email, setEmail] = useState('')

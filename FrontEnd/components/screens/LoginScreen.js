@@ -43,7 +43,7 @@ export default function ({ navigation }) {
       })
   }
 
-  /////////////////////BACK-END/////////////////////////////////////////
+  /////////////////////BACK-END//////////////////////////////////////////
   return (
     <Background style={{flex: 1, alignItems: "center", justifyContent: "center"}}>
       <MyHeader navigation={navigation} goBack={true}/>
