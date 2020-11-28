@@ -18,7 +18,7 @@ export default function ({ navigation }) {
   let [password, setPassword] = useState('')
 
   let sendCred = () => {
-      fetch("http://192.168.1.101:3000/signin", {
+      fetch("https://orutis.herokuapp.com/signup", {
         method: "POST",
         headers: {
           'Content-Type': 'application/json'
