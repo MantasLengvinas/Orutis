@@ -46,7 +46,7 @@ export default function ({ navigation }) {
   /////////////////////BACK-END/////////////////////////////////////////
   return (
     <Background style={{flex: 1, alignItems: "center", justifyContent: "center"}}>
-      <MyHeader navigation={navigation}/>
+      <MyHeader navigation={navigation} goBack={true}/>
       <Text style={[TextStyles.general, {marginTop: 40}]}>Prisijunkite</Text>
       <View style={{alignItems: "center", justifyContent: "center", marginTop: 60}}>
        <TextInput 
@@ -64,11 +64,12 @@ export default function ({ navigation }) {
       />
       </View>
       <View style={{alignItems: "center", justifyContent: "center", marginTop: 20}}>
-        <StyledButton style={{marginTop: 20}} onPress={sendCred}>Prisijungti</StyledButton>
+        <StyledButton onPress={sendCred} style={{marginTop: 20}}>Prisijungti</StyledButton>
+              <Text onPress={() => navigation.navigate("ForgotPassword")} style={styles.privacy}>Pamiršote slaptažodį?</Text>
       </View>
       <View style={{alignItems: "center", justifyContent: "center", marginTop: 20}}>
         <Icon/>
-        <Text style={{fontWeight: "bold", color: 'black', fontSize: 20}}>Neturi paskyros?</Text>
+              <Text onPress={() => navigation.navigate("Register")} style={{fontWeight: "bold", color: 'black', fontSize: 20}}>Neturi paskyros?</Text>
       </View>
     </Background>
   );
