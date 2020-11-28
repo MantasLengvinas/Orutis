@@ -7,7 +7,7 @@
     "icon": "./assets/raster/icon.png",
     "splash": {
       "image": "./assets/raster/splash.png",
-      "resizeMode": "contain",
+      "resizeMode": "cover",
       "backgroundColor": "#ffffff"
     },
     "updates": {
