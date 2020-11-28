@@ -21,6 +21,10 @@ let userSchema = new mongoose.Schema({
     isVerified: {
         type: Boolean,
         default: false
+    },
+    profilePicture: {
+        type: String,
+        default: null
     }
 
 })
