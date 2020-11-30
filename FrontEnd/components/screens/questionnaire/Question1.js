@@ -7,7 +7,7 @@ import InputStyles from "../../styles/Input";
 import MyHeader from "../../header/MyHeader";
 
 import { ScrollView, TextInput } from "react-native-gesture-handler";
-import StyledButton from "../../buttons/StyledButton";
+import StyledButton from "../../buttons/QuestionButton";
 import Icon from "../../images/Icon";
 import { FontAwesome5 } from '@expo/vector-icons'; 
 
@@ -16,20 +16,27 @@ export default function ({ navigation }) {
         <Background style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
             <MyHeader navigation={navigation} goBack={true} />
             <Text style={[TextStyles.general, { marginTop: 40 }]}>Koks oras jums patinka labiausiai?</Text>
-            <View style={{ alignItems: "center", justifyContent: "center", marginTop: 60 }}>
-            </View>
             <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
-                <View>
-                    <Text style={TextStyles.general}> �iltas  </Text>
-                <FontAwesome5 name="temperature-high" size={24} color="black" />
+                <View style={{ paddingLeft: 65, paddingTop: 100, paddingBottom: 20 }}>
+                    <StyledButton onPress={() => navigation.navigate("Question2")} >
+                    <Text style={TextStyles.general}> Šiltas </Text>
+                    <FontAwesome5 name="temperature-high" size={40} color="black" />    
+                    </StyledButton>
                 </View>
-                <View>
+            
+                
+                <View style={{ paddingRight: 65, paddingTop: 100, paddingBottom: 20 }}>
+                    <StyledButton onPress={() => navigation.navigate("Question2")} >
+                    <Text style={TextStyles.general}> Vėsus </Text>
+                    <FontAwesome5 name="temperature-low" size={40} color="black" />
+                    </StyledButton>
                 </View>
             </View>
-
             <View style={{ alignItems: "center", justifyContent: "center", marginTop: 20 }}>
                 <Icon />
             </View>
+
+            
         </Background>
     );
 }

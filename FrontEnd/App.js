@@ -10,6 +10,11 @@ import ForgotPassword from "./components/screens/ForgotPassword";
 import Confirmation from "./components/screens/Confirmation";
 import Main from "./components/screens/questionnaire/Main";
 import Question1 from "./components/screens/questionnaire/Question1";
+import Question2 from "./components/screens/questionnaire/Question2";
+import Question3 from "./components/screens/questionnaire/Question3";
+import Question4 from "./components/screens/questionnaire/Question4";
+import Question5 from "./components/screens/questionnaire/Question5";
+import GoToStart from "./components/screens/questionnaire/GoToStart";
 
 const Stack = createStackNavigator();
 //weather data
@@ -57,7 +62,11 @@ export default function App() {
         <Stack.Screen name="Confirmation" component={Confirmation} />
         <Stack.Screen name="Main" component={Main} />
         <Stack.Screen name="Question1" component={Question1} />
-
+        <Stack.Screen name="Question2" component={Question2} />
+        <Stack.Screen name="Question3" component={Question3} />
+        <Stack.Screen name="Question4" component={Question4} />
+        <Stack.Screen name="Question5" component={Question5} />
+        <Stack.Screen name="GoToStart" component={GoToStart} />
         {/*Screens list end here */}
       </Stack.Navigator>
     </NavigationContainer>

@@ -1,4 +1,4 @@
-﻿import React from "react";
+import React from "react";
 import { View, Text, Button, StyleSheet } from "react-native";
 
 import Background from "../../background/Background";
@@ -7,28 +7,28 @@ import InputStyles from "../../styles/Input";
 import MyHeader from "../../header/MyHeader";
 
 import { ScrollView, TextInput } from "react-native-gesture-handler";
-import StyledButton from "../../buttons/QuestionButton";
+import StyledButton from "../../buttons/QuestionButton5";
 import Icon from "../../images/Icon";
-import { FontAwesome5 } from '@expo/vector-icons'; 
+import { MaterialCommunityIcons } from '@expo/vector-icons'; 
 
 export default function ({ navigation }) {
     return (
         <Background style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
             <MyHeader navigation={navigation} goBack={true} />
-            <Text style={[TextStyles.general, { marginTop: 40 }]}>Kur jums labiau patinka leisti laiką?</Text>
+            <Text style={[TextStyles.general, { marginTop: 40 }]}>Kokio tipo paslaugoms teikiate pirmenybę?</Text>
             <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
-                <View style={{ paddingLeft: 65, paddingTop: 100, paddingBottom: 20 }}>
-                    <StyledButton onPress={() => navigation.navigate("Question3")} >
-                    <Text style={TextStyles.general}> Lauke </Text>
-                    <FontAwesome5 name="door-open" size={40} color="black" />    
+                <View style={{ paddingLeft: 15, paddingTop: 100, paddingBottom: 20 }}>
+                    <StyledButton onPress={() => navigation.navigate("GoToStart")} >
+                    <Text style={TextStyles.general}> Mokamoms </Text>
+                    <MaterialCommunityIcons name="cash" size={40} color="black" />    
                     </StyledButton>
                 </View>
             
                 
                 <View style={{ paddingRight: 65, paddingTop: 100, paddingBottom: 20 }}>
-                    <StyledButton onPress={() => navigation.navigate("Question3")} >
-                    <Text style={TextStyles.general}> Viduje </Text>
-                    <FontAwesome5 name="home" size={40} color="black" />
+                    <StyledButton onPress={() => navigation.navigate("GoToStart")} >
+                    <Text style={TextStyles.general}> Nemokamoms </Text>
+                    <MaterialCommunityIcons name="cash-refund" size={45} color="black" />
                     </StyledButton>
                 </View>
             </View>
@@ -44,7 +44,7 @@ export default function ({ navigation }) {
 const styles = StyleSheet.create({
     privacy: {
         fontWeight: "bold",
-        color: "blue",
+        color: "black",
         textAlign: "center",
         width: 225,
         marginTop: 20,
