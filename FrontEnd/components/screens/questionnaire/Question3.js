@@ -27,7 +27,7 @@ export default function ({ navigation }) {
                 
                 <View style={{ paddingRight: 65, paddingTop: 100, paddingBottom: 20 }}>
                     <StyledButton onPress={() => navigation.navigate("Question4")} >
-                    <Text style={TextStyles.general}> Ne <br/></Text>
+                    <Text style={TextStyles.general}> Ne <Br/></Text>
                     <MaterialCommunityIcons name="human-male" size={45} color="black" />
                     </StyledButton>
                 </View>
