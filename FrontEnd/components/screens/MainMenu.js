@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { View, Text, Button, StyleSheet } from "react-native";
+import { View, Text, Button, StyleSheet,Image } from "react-native";
 
 import Background from "../background/Background";
 import TextStyles from "../styles/Text";
@@ -21,6 +21,24 @@ import * as Location from "expo-location";
 // import SaulDebVejas from "../../assets/raster/WeatherIcons/SauleDebesisVejas.png";
 // import SaulDebVejasLiet from "../../assets/raster/WeatherIcons/SauleDebesisVejasLietus.png";
 
+function Orai(){
+  let hours = new Date().getHours();
+  console.log(Math.trunc(((hours+23)%24)/3));
+  let nowWeather =global.weather.Days[0].Timeframes[Math.trunc(((hours+23)%24)/3)];
+  let iconId = nowWeather.wx_icon;
+  let img = <></>;
+  iconId = iconId.substring(0,iconId.length-3);
+  iconId+="png";
+  //global.weather;
+  
+  try{
+  return(<><Image style={styles.icon} source={require("../../assets/raster/WeatherIcons/"+iconId)} /><Text style={{fontSize:70}}>{nowWeather.feelslike_c}°C</Text></>);
+    }
+    catch{
+      return <Text>NoImg</Text>;
+    }
+}
+
 export default function ({ navigation }) {
   const [location, setLocation] = useState(null);
   const [errorMsg, setErrorMsg] = useState(null);
@@ -30,7 +48,10 @@ export default function ({ navigation }) {
   let weather = <></>;
 
   //Get Location================
+
   useEffect(() => {
+    let hours = new Date().getHours();
+    console.log(Math.trunc(((hours+23)%24)/3));
     (async () => {
       let { status } = await Location.requestPermissionsAsync();
       if (status !== "granted") {
@@ -42,6 +63,7 @@ export default function ({ navigation }) {
       }
     })();
   }, []);
+  
   //=================
 
   //get weather data=======
@@ -65,6 +87,7 @@ export default function ({ navigation }) {
   if(upd){
     console.log(global.weather);
     weather=<Text>weather</Text>;
+    weather = Orai();
   }
   //===========
 
@@ -88,5 +111,11 @@ const styles = StyleSheet.create({
     width: 225,
     marginTop: 20,
     fontSize: 17,
+  },
+  icon: {
+    width: 180,
+    height: 180,
+    marginBottom: 30,
+    
   },
 });
