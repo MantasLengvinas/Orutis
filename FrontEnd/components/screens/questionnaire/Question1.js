@@ -31,12 +31,7 @@ export default function ({ navigation }) {
         .then(res => res.json())
         .then(async (data) => {
             console.log(data);
-            try {
-                navigation.navigate("Question2")
-            }
-            catch(err) {
-                console.log(err);
-            }
+            navigation.navigate("Question2")
         })
         .catch(err => {
             console.log(err);
