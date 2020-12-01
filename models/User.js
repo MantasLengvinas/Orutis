@@ -65,17 +65,6 @@ userSchema.methods.comparePassword = function(password){
     })
 }
 
-userSchema.methods.saveUserData = function(dataPoint, value) {
-    let user = this;
-    return new Promise((resolve, reject) => {
-        user.likeColdWeather = true;
-        if(!user.save()){
-            return reject({error: messages.error.failedToAddDataPoint});
-        }
-        resolve(true);
-    })
-}
-
 //Slaptazodzio hash'inimas
 userSchema.pre('save',function(next){
 	let user = this;

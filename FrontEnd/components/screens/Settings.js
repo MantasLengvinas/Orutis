@@ -16,6 +16,7 @@ export default function ({ navigation }) {
         <View style={styles.bottomContainer}>
           <View style={{ marginBottom: 40 }}>
             <StyledButton>Atsijungti</StyledButton>
+            <StyledButton onPress={() => navigation.navigate("MainMenu")}>Menu</StyledButton>
           </View>
         </View>
       </View>

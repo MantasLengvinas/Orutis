@@ -17,7 +17,7 @@ export default function ({ navigation }) {
             <MyHeader navigation={navigation} goBack={true} />
             <Text style={[TextStyles.general, { marginTop: 40 }]}>Dėkojame už atsakymus!</Text>
             <View style={{ alignItems: "center", justifyContent: "center", marginTop: 20, paddingTop: 110 }}>
-            <StyledButton onPress={() => navigation.navigate("")} style={{ marginTop: 20 }}>Pradėti kelionę</StyledButton>
+            <StyledButton onPress={() => navigation.navigate("MainMenu")} style={{ marginTop: 20 }}>Pradėti kelionę</StyledButton>
             </View>
             <View style={{ alignItems: "center", justifyContent: "center", marginTop: 20, paddingTop: 50 }}>
                 <Icon />
