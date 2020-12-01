@@ -43,7 +43,7 @@ export default function ({ navigation }) {
       })
   }
 
-  /////////////////////BACK-END//////////////////////////////////////////
+/////////////////////BACK-END//////////////////////////////////////////
   return (
     <Background style={{flex: 1, alignItems: "center", justifyContent: "center"}}>
       <MyHeader navigation={navigation} goBack={true}/>
@@ -64,7 +64,7 @@ export default function ({ navigation }) {
       />
       </View>
       <View style={{alignItems: "center", justifyContent: "center", marginTop: 20}}>
-        <StyledButton onPress={sendCred} style={{marginTop: 20}}>Prisijungti</StyledButton>
+        <StyledButton onPress={sendCred, () => navigation.navigate("MainMenu")} style={{marginTop: 20}}>Prisijungti</StyledButton>
               <Text onPress={() => navigation.navigate("ForgotPassword")} style={styles.privacy}>Pamiršote slaptažodį?</Text>
       </View>
       <View style={{alignItems: "center", justifyContent: "center", marginTop: 20}}>
