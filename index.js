@@ -16,15 +16,18 @@ app.options('*', cors())
 app.use(function (req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
     next();
- })
+})
  
 require('./models/User');
 require('./models/Verification')
-let authRoutes = require('./routes/authentication')
 let requireToken = require('./middleware/requireToken')
+let authRoutes = require('./routes/authentication')
+let quizRoute = require('./routes/quiz')
+
 
 app.use(bodyParser.json());
 app.use(authRoutes)
+app.use(quizRoute)
 
 //Prisijungimas prie duomenu bazes
 mongoose.connect(DB_url, {

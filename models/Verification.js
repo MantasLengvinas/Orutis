@@ -29,6 +29,7 @@ let verificationSchema = new mongoose.Schema({
 verificationSchema.methods.verifyUser = async function(email) {
     let verify = this;
     let user = await User.findOne({email}); //Randamas patvirtinamas vartotojas
+    console.log(user);
 
     return new Promise((resolve, reject) => {
         user.isVerified = true;

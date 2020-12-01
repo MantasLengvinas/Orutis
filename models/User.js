@@ -1,5 +1,6 @@
 let mongoose = require('mongoose');
 let bcrypt = require('bcrypt');
+let { messages } = require('../config/keys')
 
 //Vartotojo duomenu schema, pagal kuria saugomi duomenys apie vartotoja
 
@@ -25,6 +26,26 @@ let userSchema = new mongoose.Schema({
     profilePicture: {
         type: String,
         default: null
+    }, //Pomegiai
+    likeColdWeather: {
+        type: Boolean,
+        default: null
+    },
+    likeBeingOutside: {
+        type: Boolean,
+        default: null
+    },
+    likeActiveFreeTime: {
+        type: Boolean,
+        default: null
+    },
+    doTravelWithPets: {
+        type: Boolean,
+        default: null
+    },
+    likeFreeActivities: {
+        type: Boolean,
+        default: null
     }
 
 })
@@ -40,6 +61,17 @@ userSchema.methods.comparePassword = function(password){
 			if(!isMatch)
 				return reject(err);
         })
+        resolve(true);
+    })
+}
+
+userSchema.methods.saveUserData = function(dataPoint, value) {
+    let user = this;
+    return new Promise((resolve, reject) => {
+        user.likeColdWeather = true;
+        if(!user.save()){
+            return reject({error: messages.error.failedToAddDataPoint});
+        }
         resolve(true);
     })
 }

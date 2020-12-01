@@ -78,9 +78,9 @@ router.post('/signin', async (req, res) => {
     let {email, password} = req.body;
 
     //Patikrinama ar vartotojas kazka ivede
-    if(!email || !password){
-        res.status(422).send({error: messages.error.noInput});
-    }
+    // if(!email || !password){
+    //     res.status(422).send({error: messages.error.noInput});
+    // }
 
     let user = await User.findOne({email});
 
@@ -120,7 +120,7 @@ router.get('/verifyEmail', async(req, res) => {
     }
 })
 
-router.get('/forgotPassword', async (req, res) => {
+router.post('/forgotPassword', async (req, res) => {
     let {email} = req.body;
     let link = generateLink(req.hostname, generateSecret(20));
 
@@ -146,7 +146,7 @@ router.get('/forgotPassword', async (req, res) => {
 
 })
 
-router.get('/resendEmail', async (req, res) => {
+router.post('/resendEmail', async (req, res) => {
     let {email} = req.body;
     let link = generateLink(req.hostname, generateSecret(10));
 

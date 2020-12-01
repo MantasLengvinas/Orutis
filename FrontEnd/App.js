@@ -15,6 +15,7 @@ import Question3 from "./components/screens/questionnaire/Question3";
 import Question4 from "./components/screens/questionnaire/Question4";
 import Question5 from "./components/screens/questionnaire/Question5";
 import GoToStart from "./components/screens/questionnaire/GoToStart";
+import AppScreen from "./components/screens/AppScreen";
 
 const Stack = createStackNavigator();
 //weather data
@@ -67,6 +68,7 @@ export default function App() {
         <Stack.Screen name="Question4" component={Question4} />
         <Stack.Screen name="Question5" component={Question5} />
         <Stack.Screen name="GoToStart" component={GoToStart} />
+        <Stack.Screen name="AppScreen" component={AppScreen}/>
         {/*Screens list end here */}
       </Stack.Navigator>
     </NavigationContainer>

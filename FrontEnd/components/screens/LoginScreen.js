@@ -16,6 +16,8 @@ export default function ({ navigation }) {
 /////////////////////BACK-END/////////////////////////////////////////
   let [email, setEmail] = useState('')
   let [password, setPassword] = useState('')
+  let [error, setError] = useState('')
+
 
   let sendCred = () => {
       fetch("http://orutis.live/signin", {
@@ -30,9 +32,13 @@ export default function ({ navigation }) {
       })
       .then(res => res.json())
       .then(async (data) => {
-          console.log(data);
           try {
+            if(data.error){
+              setError(data.error)
+              console.log(error);
+            }
             await AsyncStorage.setItem("token", data.token)
+            navigation.navigate("AppScreen")
           }
           catch(err) {
             console.log(err);
@@ -48,6 +54,7 @@ export default function ({ navigation }) {
     <Background style={{flex: 1, alignItems: "center", justifyContent: "center"}}>
       <MyHeader navigation={navigation} goBack={true}/>
       <Text style={[TextStyles.general, {marginTop: 40}]}>Prisijunkite</Text>
+      <Text style={{textAlign: 'center', color: 'red', marginTop: 40, fontSize: 20}}>{error}</Text>
       <View style={{alignItems: "center", justifyContent: "center", marginTop: 60}}>
        <TextInput 
         placeholder="El. Paštas"
@@ -64,7 +71,7 @@ export default function ({ navigation }) {
       />
       </View>
       <View style={{alignItems: "center", justifyContent: "center", marginTop: 20}}>
-        <StyledButton onPress={sendCred, () => navigation.navigate("MainMenu")} style={{marginTop: 20}}>Prisijungti</StyledButton>
+        <StyledButton onPress={sendCred} style={{marginTop: 20}}>Prisijungti</StyledButton>
               <Text onPress={() => navigation.navigate("ForgotPassword")} style={styles.privacy}>Pamiršote slaptažodį?</Text>
       </View>
       <View style={{alignItems: "center", justifyContent: "center", marginTop: 20}}>
