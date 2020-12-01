@@ -25,7 +25,8 @@ const styles = StyleSheet.create({
         width: 150,
         height: 40,
         justifyContent: 'center',
-        marginTop: 5
+        marginLeft: 15,
+        marginTop: 15
     },
     login: {
         color: 'black',

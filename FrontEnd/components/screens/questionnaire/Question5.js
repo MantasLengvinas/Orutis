@@ -19,7 +19,7 @@ export default function ({ navigation }) {
             <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
                 <View style={{ paddingLeft: 15, paddingTop: 100, paddingBottom: 20 }}>
                     <StyledButton onPress={() => navigation.navigate("GoToStart")} >
-                    <Text style={TextStyles.general}> Mokamoms </Text>
+                    <Text style={styles.general}> Mokamoms <br/></Text>
                     <MaterialCommunityIcons name="cash" size={40} color="black" />    
                     </StyledButton>
                 </View>
@@ -27,8 +27,8 @@ export default function ({ navigation }) {
                 
                 <View style={{ paddingRight: 65, paddingTop: 100, paddingBottom: 20 }}>
                     <StyledButton onPress={() => navigation.navigate("GoToStart")} >
-                    <Text style={TextStyles.general}> Nemokamoms </Text>
-                    <MaterialCommunityIcons name="cash-refund" size={45} color="black" />
+                    <Text style={styles.general}> Nemokamoms <br/></Text>
+                    <MaterialCommunityIcons name="cash-refund" size={40} color="black" />
                     </StyledButton>
                 </View>
             </View>
@@ -50,4 +50,10 @@ const styles = StyleSheet.create({
         marginTop: 20,
         fontSize: 17,
     },
+    general: {
+        textAlign: "center",
+        color: "#3A3434",
+        fontWeight: "700",
+        fontSize: 21,
+      }
 });

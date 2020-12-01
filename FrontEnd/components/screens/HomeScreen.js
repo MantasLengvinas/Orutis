@@ -18,7 +18,7 @@ export default function ({ navigation }) {
         </LoginButtonTop>
         <MyHeader navigation={navigation} goBack={false}/>
       </View>
-      <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
+      <View style={{ flex: 1, alignItems: "center", justifyContent: "center", paddingTop: 40 }}>
         <Text style={TextStyles.general}>Kur keliausite šiandien?</Text>
         <View style={styles.bottomContainer}>
           <Icon />

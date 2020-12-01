@@ -19,7 +19,7 @@ export default function ({ navigation }) {
             <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
                 <View style={{ paddingLeft: 65, paddingTop: 100, paddingBottom: 20 }}>
                     <StyledButton onPress={() => navigation.navigate("Question2")} >
-                    <Text style={TextStyles.general}> Šiltas </Text>
+                    <Text style={TextStyles.general}> Šiltas <br/></Text>
                     <FontAwesome5 name="temperature-high" size={40} color="black" />    
                     </StyledButton>
                 </View>
@@ -27,7 +27,7 @@ export default function ({ navigation }) {
                 
                 <View style={{ paddingRight: 65, paddingTop: 100, paddingBottom: 20 }}>
                     <StyledButton onPress={() => navigation.navigate("Question2")} >
-                    <Text style={TextStyles.general}> Vėsus </Text>
+                    <Text style={TextStyles.general}> Vėsus <br/></Text>
                     <FontAwesome5 name="temperature-low" size={40} color="black" />
                     </StyledButton>
                 </View>
