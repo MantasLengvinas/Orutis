@@ -34,7 +34,7 @@ export default function ({ navigation }) {
       .then(async (data) => {
           try {
             await AsyncStorage.setItem("token", data.token)
-            navigation.navigate("Main")
+            window.location.reload(false);
           }
           catch(err) {
             console.log(err);

@@ -1,3 +1,4 @@
+import AsyncStorage from "@react-native-community/async-storage";
 import React from "react";
 import { Text, View, StyleSheet } from "react-native";
 
@@ -8,6 +9,23 @@ import MyHeader from "../header/MyHeader";
 import TextStyles  from "../styles/Text";
 
 export default function ({ navigation }) {
+
+  ////////////////////BACK-END/////////////////////////
+
+  let logout = () => {
+    try {
+      AsyncStorage.clear();
+      window.location.reload(false);
+      return true;
+    }
+    catch(e) {
+      console.log(e);
+      return false;
+    }
+
+  }
+
+  ////////////////////BACK-END////////////////////////
   return (
     <Background>
       <MyHeader navigation={navigation} goBack={true}/>
@@ -15,7 +33,7 @@ export default function ({ navigation }) {
         <Text style={TextStyles.general}>Nustatymai</Text>
         <View style={styles.bottomContainer}>
           <View style={{ marginBottom: 40 }}>
-            <StyledButton>Atsijungti</StyledButton>
+            <StyledButton onPress={logout}>Atsijungti</StyledButton>
             <StyledButton onPress={() => navigation.navigate("MainMenu")}>Menu</StyledButton>
           </View>
         </View>

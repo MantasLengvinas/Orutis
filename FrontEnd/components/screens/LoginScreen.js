@@ -38,8 +38,10 @@ export default function ({ navigation }) {
               setError(data.error)
               console.log(error);
             }
-            await AsyncStorage.setItem("token", data.token)
-            navigation.navigate("MainMenu")
+            if(data.token){
+              await AsyncStorage.setItem("token", data.token);
+              window.location.reload(false);
+            }
           }
           catch(err) {
             console.log(err);
