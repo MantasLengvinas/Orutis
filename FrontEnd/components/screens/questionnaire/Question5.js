@@ -27,7 +27,7 @@ export default function ({ navigation }) {
                 
                 <View style={{ paddingRight: 65, paddingTop: 100, paddingBottom: 20 }}>
                     <StyledButton onPress={() => navigation.navigate("GoToStart")} >
-                    <Text style={styles.general}> Nemokamoms <br/></Text>
+                    <Text style={styles.general}> Nemokamoms <Br/></Text>
                     <MaterialCommunityIcons name="cash-refund" size={40} color="black" />
                     </StyledButton>
                 </View>

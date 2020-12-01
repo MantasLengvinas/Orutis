@@ -27,7 +27,7 @@ export default function ({ navigation }) {
                 
                 <View style={{ paddingRight: 65, paddingTop: 100, paddingBottom: 20 }}>
                     <StyledButton onPress={() => navigation.navigate("Question2")} >
-                    <Text style={TextStyles.general}> Vėsus <br/></Text>
+                    <Text style={TextStyles.general}> Vėsus <Br/></Text>
                     <FontAwesome5 name="temperature-low" size={40} color="black" />
                     </StyledButton>
                 </View>
