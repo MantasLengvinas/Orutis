@@ -18,14 +18,14 @@ export default function ({ navigation }) {
 
     let [value, setValue] = useState('')
 
-    let saveQuestion = (val) => {
-        console.log(token);
+    let saveQuestion = async (val) => {
+        let token = await AsyncStorage.getItem('token')
         setValue(val);
         fetch("http://orutis.live/quiz?q=1", {
             method: "POST",
             headers: {
             'Content-Type': 'application/json',
-            'Authorization': global.token
+            'Authorization': token
             },
             body: JSON.stringify({
                 "value": value
