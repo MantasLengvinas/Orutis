@@ -1,5 +1,6 @@
 ﻿import React, {useState} from "react";
 import { View, Text, Button, StyleSheet } from "react-native";
+import AsyncStorage from "@react-native-community/async-storage";
 
 import Background from "../../background/Background";
 import TextStyles from "../../styles/Text";
@@ -17,13 +18,14 @@ export default function ({ navigation }) {
 
     let [value, setValue] = useState('')
 
-    let saveQuestion = (val) => {
+    let saveQuestion = async (val) => {
+        let token = await AsyncStorage.getItem('token')
         setValue(val);
         fetch("http://orutis.live/quiz?q=2", {
             method: "POST",
             headers: {
             'Content-Type': 'application/json',
-            'Authorization': global.token
+            'Authorization': token
             },
             body: JSON.stringify({
                 "value": value
