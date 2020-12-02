@@ -32,7 +32,7 @@ export default function ({ navigation }) {
         .then(res => res.json())
         .then(async (data) => {
             console.log(data);
-            navigation.navigate("GoToStart")
+            navigation.navigate("Confirmation")
         })
         .catch(err => {
             console.log(err);

@@ -14,6 +14,7 @@ export default function ({ navigation }) {
         <Background style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
             <MyHeader navigation={navigation} goBack={true} />
             <Text style={[TextStyles.general, { marginTop: 40 }]}>Į Jūsų el. paštą sėkmingai išsiųstas patvirtinimo laiškas </Text>
+            <Text style={[TextStyles.general, { marginTop: 40 }]}>Prašome patvirtinti el. paštą per 10 minučių</Text>
             <View style={{ alignItems: "center", justifyContent: "center", marginTop: 60 }}>
             </View>
             
