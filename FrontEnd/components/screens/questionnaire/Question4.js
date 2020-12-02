@@ -22,7 +22,8 @@ export default function ({ navigation }) {
         fetch("http://orutis.live/quiz?q=4", {
             method: "POST",
             headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'Authorization': token
             },
             body: JSON.stringify({
                 "value": value
@@ -45,16 +46,16 @@ export default function ({ navigation }) {
             <Text style={[TextStyles.general, { marginTop: 40 }]}>Ar keliaujate su gyvūnais?</Text>
             <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
                 <View style={{ paddingLeft: 65, paddingTop: 100, paddingBottom: 20 }}>
-                    <StyledButton onPress={saveQuestion(true)} >
-                    <Text style={TextStyles.general}> Taip <br/></Text>
+                    <StyledButton onPress={() => saveQuestion(true)} >
+                    <Text style={TextStyles.general}> Taip {"\n"}</Text>
                     <MaterialCommunityIcons name="dog-side" size={40} color="black" />    
                     </StyledButton>
                 </View>
             
                 
                 <View style={{ paddingRight: 65, paddingTop: 100, paddingBottom: 20 }}>
-                    <StyledButton onPress={saveQuestion(false)} >
-                    <Text style={TextStyles.general}> Ne <br/></Text>
+                    <StyledButton onPress={() => saveQuestion(false)} >
+                    <Text style={TextStyles.general}> Ne {"\n"}</Text>
                     <MaterialCommunityIcons name="walk" size={45} color="black" />
                     </StyledButton>
                 </View>

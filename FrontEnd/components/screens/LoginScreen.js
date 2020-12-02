@@ -9,6 +9,7 @@ import MyHeader from "../header/MyHeader";
 import { TextInput } from "react-native-gesture-handler";
 import StyledButton from "../buttons/StyledButton";
 import Icon from "../images/Icon";
+import { useLinkProps } from "@react-navigation/native";
 
 
 export default function ({ navigation }) {
@@ -40,7 +41,7 @@ export default function ({ navigation }) {
             }
             if(data.token){
               await AsyncStorage.setItem("token", data.token);
-              window.location.reload(false);
+              navigation.navigate("MainMenu")
             }
           }
           catch(err) {
@@ -74,7 +75,7 @@ export default function ({ navigation }) {
       />
       </View>
       <View style={{alignItems: "center", justifyContent: "center", marginTop: 20}}>
-        <StyledButton onPress={sendCred} style={{marginTop: 20}}>Prisijungti</StyledButton>
+        <StyledButton onPress={() => sendCred()} style={{marginTop: 20}}>Prisijungti</StyledButton>
               <Text onPress={() => navigation.navigate("ForgotPassword")} style={styles.privacy}>Pamiršote slaptažodį?</Text>
       </View>
       <View style={{alignItems: "center", justifyContent: "center", marginTop: 20}}>

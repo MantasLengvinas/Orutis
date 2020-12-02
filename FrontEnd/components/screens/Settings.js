@@ -15,7 +15,7 @@ export default function ({ navigation }) {
   let logout = () => {
     try {
       AsyncStorage.clear();
-      window.location.reload(false);
+      navigation.navigate("Home")
       return true;
     }
     catch(e) {
@@ -33,7 +33,7 @@ export default function ({ navigation }) {
         <Text style={TextStyles.general}>Nustatymai</Text>
         <View style={styles.bottomContainer}>
           <View style={{ marginBottom: 40 }}>
-            <StyledButton onPress={logout}>Atsijungti</StyledButton>
+            <StyledButton onPress={() => logout()}>Atsijungti</StyledButton>
             <StyledButton onPress={() => navigation.navigate("MainMenu")}>Menu</StyledButton>
           </View>
         </View>

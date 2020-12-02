@@ -22,7 +22,8 @@ export default function ({ navigation }) {
         fetch("http://orutis.live/quiz?q=2", {
             method: "POST",
             headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'Authorization': token
             },
             body: JSON.stringify({
                 "value": value
@@ -44,16 +45,16 @@ export default function ({ navigation }) {
             <Text style={[TextStyles.general, { marginTop: 40 }]}>Kur jums labiau patinka leisti laiką?</Text>
             <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
                 <View style={{ paddingLeft: 65, paddingTop: 100, paddingBottom: 20 }}>
-                    <StyledButton onPress={saveQuestion(true)} >
-                    <Text style={TextStyles.general}> Lauke <br/></Text>
+                    <StyledButton onPress={() => saveQuestion(true)} >
+                    <Text style={TextStyles.general}> Lauke {"\n"}</Text>
                     <FontAwesome5 name="door-open" size={40} color="black" />    
                     </StyledButton>
                 </View>
             
                 
                 <View style={{ paddingRight: 65, paddingTop: 100, paddingBottom: 20 }}>
-                    <StyledButton onPress={saveQuestion(false)} >
-                    <Text style={TextStyles.general}> Viduje <br/></Text>
+                    <StyledButton onPress={() => saveQuestion(false)} >
+                    <Text style={TextStyles.general}> Viduje {"\n"}</Text>
                     <FontAwesome5 name="home" size={40} color="black" />
                     </StyledButton>
                 </View>

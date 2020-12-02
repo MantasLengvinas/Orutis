@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 import { View, Text, Button, StyleSheet } from "react-native";
+import AsyncStorage from "@react-native-community/async-storage";
 
 import Background from "../../background/Background";
 import TextStyles from "../../styles/Text";
@@ -22,7 +23,8 @@ export default function ({ navigation }) {
         fetch("http://orutis.live/quiz?q=1", {
             method: "POST",
             headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'Authorization': token
             },
             body: JSON.stringify({
                 "value": value
@@ -45,16 +47,16 @@ export default function ({ navigation }) {
             <Text style={[TextStyles.general, { marginTop: 40 }]}>Koks oras jums patinka labiausiai?</Text>
             <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
                 <View style={{ paddingLeft: 65, paddingTop: 100, paddingBottom: 20 }}>
-                    <StyledButton onPress={saveQuestion(false)} >
-                    <Text style={TextStyles.general}> Šiltas <br/></Text>
+                    <StyledButton onPress={() => saveQuestion(false)} >
+                    <Text style={TextStyles.general}> Šiltas {"\n"}</Text>
                     <FontAwesome5 name="temperature-high" size={40} color="black" />    
                     </StyledButton>
                 </View>
             
                 
                 <View style={{ paddingRight: 65, paddingTop: 100, paddingBottom: 20 }}>
-                    <StyledButton onPress={saveQuestion(true)} >
-                    <Text style={TextStyles.general}> Vėsus <br/></Text>
+                    <StyledButton onPress={() => saveQuestion(true)} >
+                    <Text style={TextStyles.general}> Vėsus {"\n"}</Text>
                     <FontAwesome5 name="temperature-low" size={40} color="black" />
                     </StyledButton>
                 </View>

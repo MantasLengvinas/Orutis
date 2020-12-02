@@ -22,7 +22,8 @@ export default function ({ navigation }) {
         fetch("http://orutis.live/quiz?q=5", {
             method: "POST",
             headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'Authorization': token
             },
             body: JSON.stringify({
                 "value": value
@@ -45,8 +46,8 @@ export default function ({ navigation }) {
             <Text style={[TextStyles.general, { marginTop: 40 }]}>Kokio tipo paslaugoms teikiate pirmenybę?</Text>
             <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
                 <View style={{ paddingLeft: 15, paddingTop: 100, paddingBottom: 20 }}>
-                    <StyledButton onPress={saveQuestion(false)} >
-                    <Text style={styles.general}> Mokamoms <br/></Text>
+                    <StyledButton onPress={() => saveQuestion(false)} >
+                    <Text style={styles.general}> Mokamoms {"\n"}</Text>
                     <MaterialCommunityIcons name="cash" size={40} color="black" />    
                     </StyledButton>
                 </View>
@@ -54,7 +55,7 @@ export default function ({ navigation }) {
                 
                 <View style={{ paddingRight: 65, paddingTop: 100, paddingBottom: 20 }}>
                     <StyledButton onPress={() => saveQuestion(true)} >
-                    <Text style={styles.general}> Nemokamoms <Br/></Text>
+                    <Text style={styles.general}> Nemokamoms {"\n"}</Text>
                     <MaterialCommunityIcons name="cash-refund" size={40} color="black" />
                     </StyledButton>
                 </View>

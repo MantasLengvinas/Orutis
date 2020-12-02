@@ -1,8 +1,7 @@
 import React, {useEffect, useState} from "react";
-import AsyncStorage from "@react-native-community/async-storage";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
-//import AsyncStorage from "@react-native-community/async-storage";
+import AsyncStorage from "@react-native-community/async-storage";
 
 import HomeScreen from "./components/screens/HomeScreen";
 import Settings from "./components/screens/Settings";
@@ -95,14 +94,21 @@ export default function App() {
   let [isSignedUp, signUp] = useState(null)
   // AsyncStorage.clear();
 
-  useEffect(async () => {
-    let token = await AsyncStorage.getItem('token')
-    console.log(token);
+  let Authorize = async () => {
+    global.token = await AsyncStorage.getItem('token')
     if(token){
       signUp(true)
     }
     else{
       signUp(false)
+    }
+  }
+
+  useEffect(() => {
+    Authorize();
+
+    return () => {
+      console.log("Authorization success");
     }
 
   }, [])
@@ -121,21 +127,30 @@ export default function App() {
             <Stack.Screen name="Loading" component={Loading} />
           ) : isSignedUp == true ? (<> 
             <Stack.Screen name="MainMenu" component={MainMenu} />
+            <Stack.Screen name="Main" component={Main} />
             <Stack.Screen name="Question1" component={Question1} />
             <Stack.Screen name="Question2" component={Question2} />
             <Stack.Screen name="Question3" component={Question3} />
             <Stack.Screen name="Question4" component={Question4} />
             <Stack.Screen name="Question5" component={Question5} />
             <Stack.Screen name="Settings" component={Settings} />
-            <Stack.Screen name="Main" component={Main} />
             <Stack.Screen name="GoToStart" component={GoToStart} />
             <Stack.Screen name="Confirmation" component={Confirmation} />
           </>) : (<>
             <Stack.Screen name="Home" component={HomeScreen} />
             <Stack.Screen name="Register" component={RegisterScreen} />
+            <Stack.Screen name="Main" component={Main} />
             <Stack.Screen name="Login" component={LoginScreen} />
             <Stack.Screen name="ForgotPassword" component={ForgotPassword} />
-
+            <Stack.Screen name="MainMenu" component={MainMenu} />
+            <Stack.Screen name="Question1" component={Question1} />
+            <Stack.Screen name="Question2" component={Question2} />
+            <Stack.Screen name="Question3" component={Question3} />
+            <Stack.Screen name="Question4" component={Question4} />
+            <Stack.Screen name="Question5" component={Question5} />
+            <Stack.Screen name="Settings" component={Settings} />
+            <Stack.Screen name="GoToStart" component={GoToStart} />
+            <Stack.Screen name="Confirmation" component={Confirmation} />
           </>)
         }
       </Stack.Navigator>

@@ -1,4 +1,5 @@
-import React from "react";
+import React, {useEffect} from "react";
+import AsyncStorage from "@react-native-community/async-storage";
 import { Text, Button, View, StyleSheet } from "react-native";
 
 import Background from "../background/Background";
@@ -10,6 +11,26 @@ import Icon from "../images/Icon";
 import LoginButtonTop from "../buttons/LoginButtonTop";
 
 export default function ({ navigation }) {
+
+  let Authorize = async () => {
+    global.token = await AsyncStorage.getItem('token')
+    if(token){
+      navigation.navigate("MainMenu")
+    }
+    else{
+      navigation.navigate("Login")
+    }
+  }
+
+  useEffect(() => {
+    Authorize();
+
+    return () => {
+      console.log("Authorization success");
+    }
+
+  }, [])
+
   return (
     <Background>
       <Text style={TextStyles.general}>Luktelėkite, programėlė tuoj pat pasileis</Text>
