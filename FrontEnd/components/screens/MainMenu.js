@@ -86,7 +86,7 @@ export default function ({ navigation }) {
           updateWeather(data.Days[0].date);
         });
       })
-      .catch((err) => setErrorMsg("bad connection with weather api"));
+      .catch((err) => setErrorMsg("Error when connecting to weather api"));
   }
 
   if (errorMsg) {
@@ -94,7 +94,7 @@ export default function ({ navigation }) {
   }
   if (hasWeather) {
     //console.log(globa);
-    weather = <Text>weather</Text>;
+    //weather = <Text>weather</Text>;
     weather = Orai();
   }
   //===========
