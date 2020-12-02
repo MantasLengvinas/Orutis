@@ -8,6 +8,7 @@ import MyHeader from "../header/MyHeader";
 import { ScrollView, TextInput } from "react-native-gesture-handler";
 import StyledButton from "../buttons/StyledButton";
 import * as Location from "expo-location";
+import ImgData from "../data/ImageSources";
 
 // import DebLiet from "../../assets/raster/WeatherIcons/DebesisLietus.png";
 // import DebLietSnieg from "../../assets/raster/WeatherIcons/DebesisLietusSniegas.png";
@@ -21,21 +22,23 @@ import * as Location from "expo-location";
 // import SaulDebVejas from "../../assets/raster/WeatherIcons/SauleDebesisVejas.png";
 // import SaulDebVejasLiet from "../../assets/raster/WeatherIcons/SauleDebesisVejasLietus.png";
 
+let globa={};
+
 function Orai(){
   let hours = new Date().getHours();
   console.log(Math.trunc(((hours+23)%24)/3));
-  let nowWeather =global.weather.Days[0].Timeframes[Math.trunc(((hours+23)%24)/3)];
+  let nowWeather =globa.Days[0].Timeframes[Math.trunc(((hours+23)%24)/3)];
   let iconId = nowWeather.wx_icon;
-  let img = <></>;
-  iconId = iconId.substring(0,iconId.length-3);
-  iconId+="png";
-  //global.weather;
-  
+  //let img = <></>;
+
+  //globa;
+  console.log(ImgData);
   try{
-  return(<><Image style={styles.icon} source={require("../../assets/raster/WeatherIcons/"+iconId)} /><Text style={{fontSize:70}}>{nowWeather.feelslike_c}°C</Text></>);
+    //return <></>;
+  return(<><Image style={styles.icon} source={ImgData[iconId]} /><Text style={{fontSize:70}}>{nowWeather.feelslike_c}°C</Text></>);
     }
     catch{
-      return <Text>NoImg</Text>;
+    return <Text>No such image in image library: {iconId}</Text>;
     }
 }
 
@@ -75,7 +78,7 @@ export default function ({ navigation }) {
     fetch("http://api.weatherunlocked.com/api/forecast/"+lat+","+lon+"?app_id=b188c162&app_key=62fd3d2f66c74f7b9d1064538c497646").then((response) => {
       //console.log(response);
       response.json().then((data) => {
-        global.weather = data;
+        globa = data;
         doUpdate(data.Days[0].date);
       });
     });
@@ -85,7 +88,7 @@ export default function ({ navigation }) {
   weather=<Text>{errorMsg}</Text>;
   }
   if(upd){
-    console.log(global.weather);
+    console.log(globa);
     weather=<Text>weather</Text>;
     weather = Orai();
   }
