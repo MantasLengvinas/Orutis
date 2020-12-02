@@ -10,6 +10,7 @@ import MyHeader from "../header/MyHeader";
 import StyledButton from "../buttons/StyledButton";
 import Icon from "../images/Icon";
 import { useLinkProps } from "@react-navigation/native";
+import { ScrollView } from "react-native-gesture-handler";
 //import { TextInput } from "react-native-gesture-handler";
 
 export default function ({ navigation }) {
@@ -52,6 +53,7 @@ export default function ({ navigation }) {
 
   /////////////////////BACK-END//////////////////////////////////////////
   return (
+    <ScrollView style={{ flex: 1}}>
     <Background style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
       <MyHeader navigation={navigation} goBack={true} />
       <Text style={[TextStyles.general, { marginTop: 40 }]}>Prisijunkite</Text>
@@ -74,7 +76,7 @@ export default function ({ navigation }) {
           Neturi paskyros?
         </Text>
       </View>
-    </Background>
+    </Background></ScrollView>
   );
 }
 
