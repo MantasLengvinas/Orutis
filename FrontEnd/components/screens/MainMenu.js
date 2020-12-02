@@ -79,13 +79,14 @@ export default function ({ navigation }) {
     //console.log(lat +" " +lon);
 
     fetch("http://api.weatherunlocked.com/api/forecast/" + lat + "," + lon + "?app_id=b188c162&app_key=62fd3d2f66c74f7b9d1064538c497646")
-    .then((response) => {
-      //console.log(response);
-      response.json().then((data) => {
-        globa = data;
-        updateWeather(data.Days[0].date);
-      });
-    }).catch(err=>setErrorMsg("bad connection with weather api"));
+      .then((response) => {
+        //console.log(response);
+        response.json().then((data) => {
+          globa = data;
+          updateWeather(data.Days[0].date);
+        });
+      })
+      .catch((err) => setErrorMsg("bad connection with weather api"));
   }
 
   if (errorMsg) {
