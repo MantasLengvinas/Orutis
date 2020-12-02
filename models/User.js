@@ -61,7 +61,7 @@ userSchema.methods.comparePassword = function(password){
 			if(err)
 				return reject(err);
 			if(!isMatch)
-				return reject("Invalid password.");
+				return reject("Invalid credentials.");
         })
     })
 }

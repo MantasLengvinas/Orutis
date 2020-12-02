@@ -94,8 +94,7 @@ router.post('/signin', async (req, res) => {
         res.send({token});
         //Tikrinama ar slaptazodis.
         //Jei teisingas, sukuriamas ir issaugomas web token'as (vartotojas prijungiamas)
-    }
-    catch(err){
+    }catch(err){
         res.status(422).send(err);
     }
 })
