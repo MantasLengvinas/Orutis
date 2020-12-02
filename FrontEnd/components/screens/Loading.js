@@ -10,29 +10,34 @@ import LoginButton from "../buttons/LoginButton";
 import Icon from "../images/Icon";
 import LoginButtonTop from "../buttons/LoginButtonTop";
 
+
 export default function ({ navigation }) {
 
   let Authorize = async () => {
     global.token = await AsyncStorage.getItem('token')
     if(token){
-      navigation.navigate("MainMenu")
+      navigation.reset({
+        index: 0,
+        routes:[{name:"MainMenu"}]
+      });
+      //navigation.navigate("MainMenu")
     }
     else{
-      navigation.navigate("Login")
+      navigation.reset({
+        index: 0,
+        routes:[{name:"Home"}]
+      });
     }
   }
+  Authorize();
+  
+  
 
-  useEffect(() => {
-    Authorize();
-
-    return () => {
-      console.log("Authorization success");
-    }
-
-  }, [])
+    
 
   return (
     <Background>
+      
       <Text style={TextStyles.general}>Luktelėkite, programėlė tuoj pat pasileis</Text>
     </Background>
   );
@@ -43,5 +48,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "flex-end",
     alignItems: "center",
+    justifyContent:'center',
+
   },
 });
