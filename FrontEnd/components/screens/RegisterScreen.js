@@ -32,6 +32,7 @@ export default function ({ navigation }) {
       .then((res) => res.json())
       .then(async (data) => {
         try {
+          console.log(data.token);
           await AsyncStorage.setItem("token", data.token);
           navigation.navigate("Main");
         } catch (err) {
@@ -55,7 +56,7 @@ export default function ({ navigation }) {
           <TextInput secureTextEntry={true} value={password} onChangeText={(text) => setPassword(text)} placeholder="Slaptažodis" style={InputStyles.inputField} />
         </View>
         <View style={{ alignItems: "center", justifyContent: "center", marginTop: 20 }}>
-          <StyledButton onPress={sendCred} style={{ marginTop: 20 }}>
+          <StyledButton onPress={() => sendCred()} style={{ marginTop: 20 }}>
             Registruotis
           </StyledButton>
           <Text style={styles.privacy}>Registruodamiesi sutinkate su mūsų privatumo politika</Text>

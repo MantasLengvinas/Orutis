@@ -19,12 +19,13 @@ export default function ({ navigation }) {
     let [value, setValue] = useState('')
 
     let saveQuestion = (val) => {
+        console.log(token);
         setValue(val);
         fetch("http://orutis.live/quiz?q=1", {
             method: "POST",
             headers: {
             'Content-Type': 'application/json',
-            'Authorization': token
+            'Authorization': global.token
             },
             body: JSON.stringify({
                 "value": value

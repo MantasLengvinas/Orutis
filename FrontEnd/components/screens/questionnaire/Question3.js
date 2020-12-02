@@ -23,7 +23,7 @@ export default function ({ navigation }) {
             method: "POST",
             headers: {
             'Content-Type': 'application/json',
-            'Authorization': token
+            'Authorization': global.token
             },
             body: JSON.stringify({
                 "value": value
