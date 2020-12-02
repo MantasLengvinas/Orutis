@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { View, Text, Button, StyleSheet } from "react-native";
+import React, { useEffect, useState } from "react";
+import { View, Text, Button, StyleSheet, Image } from "react-native";
 
 import Background from "../background/Background";
 import TextStyles from "../styles/Text";
@@ -7,7 +7,8 @@ import InputStyles from "../styles/Input";
 import MyHeader from "../header/MyHeader";
 import { ScrollView, TextInput } from "react-native-gesture-handler";
 import StyledButton from "../buttons/StyledButton";
-import { cos } from "react-native-reanimated";
+import * as Location from "expo-location";
+import ImgData from "../data/ImageSources";
 
 // import DebLiet from "../../assets/raster/WeatherIcons/DebesisLietus.png";
 // import DebLietSnieg from "../../assets/raster/WeatherIcons/DebesisLietusSniegas.png";
@@ -21,48 +22,105 @@ import { cos } from "react-native-reanimated";
 // import SaulDebVejas from "../../assets/raster/WeatherIcons/SauleDebesisVejas.png";
 // import SaulDebVejasLiet from "../../assets/raster/WeatherIcons/SauleDebesisVejasLietus.png";
 
-export default function ({ navigation }) {
+let globa = {};
 
-    //const [orai, updateOrus] = useState({});
-    const [upd, doUpdate] = useState("waiting");
+function Orai() {
+  let hours = new Date().getHours();
+  //console.log(Math.trunc(((hours+23)%24)/3));
+  let nowWeather = globa.Days[0].Timeframes[Math.trunc(((hours + 23) % 24) / 3)];
+  let iconId = nowWeather.wx_icon;
+  //let img = <></>;
 
-    //global.weather = "cring";
-   // let imag = <Image style={styles.icon} source={require("../../assets/raster/WeatherIcons/SauleDebesisVejasLietus.png")} />;
-   //console.log(global.weather);
-
-   fetch("http://api.weatherunlocked.com/api/forecast/51.50,-0.12?app_id=b188c162&app_key=62fd3d2f66c74f7b9d1064538c497646")
-   .then(response=> {
-        //console.log(response);
-        response.json().then(data=>{global.weather=data;doUpdate(data.Days[0].date)});
-   })
-
-   let weather =<></>;
-   if(upd !=="waiting")
-   {
-        console.log(global.weather);
-   }
-   
-
+  //globa;
+  //console.log(ImgData);
+  try {
+    //return <></>;
     return (
-            <Background style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-                <MyHeader navigation={navigation} goBack={false} />
-                <Text style={[TextStyles.general, { marginTop: 40 }]}>Šiandienos orų prognozė</Text>
-
-                <View style={{ alignItems: "center", justifyContent: "center", marginTop: 20 }}>
-                    <Text>{upd}</Text>  
-                </View>
-                
-            </Background>
+      <>
+        <Image style={styles.icon} source={ImgData[iconId]} />
+        <Text style={{ fontSize: 70 }}>{nowWeather.feelslike_c}°C</Text>
+      </>
     );
+  } catch {
+    return <Text>No such image in image library: {iconId}</Text>;
+  }
+}
+
+export default function ({ navigation }) {
+  const [location, setLocation] = useState(null);
+  const [errorMsg, setErrorMsg] = useState(null);
+
+  const [hasWeather, updateWeather] = useState(null);
+
+  let weather = <></>;
+
+  //Get Location================
+
+  useEffect(() => {
+    //let hours = new Date().getHours();
+    //console.log(Math.trunc(((hours+23)%24)/3));
+    (async () => {
+      let { status } = await Location.requestPermissionsAsync();
+      if (status !== "granted") {
+        setErrorMsg("Permission to access location was denied");
+      } else {
+        let location = await Location.getCurrentPositionAsync({});
+        setLocation(location);
+      }
+    })();
+  }, []);
+
+  //=================
+
+  //get weather data=======
+  if (location && !hasWeather) {
+    const lat = Math.round(location.coords.latitude * 100) / 100;
+    const lon = Math.round(location.coords.longitude * 100) / 100;
+    //console.log(lat +" " +lon);
+
+    fetch("http://api.weatherunlocked.com/api/forecast/" + lat + "," + lon + "?app_id=b188c162&app_key=62fd3d2f66c74f7b9d1064538c497646")
+      .then((response) => {
+        //console.log(response);
+        response.json().then((data) => {
+          globa = data;
+          updateWeather(data.Days[0].date);
+        });
+      })
+      .catch((err) => setErrorMsg("bad connection with weather api"));
+  }
+
+  if (errorMsg) {
+    weather = <Text>{errorMsg}</Text>;
+  }
+  if (hasWeather) {
+    //console.log(globa);
+    weather = <Text>weather</Text>;
+    weather = Orai();
+  }
+  //===========
+
+  return (
+    <Background style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
+      <MyHeader navigation={navigation} goBack={false} />
+      <Text style={[TextStyles.general, { marginTop: 40 }]}>Šiandienos orų prognozė</Text>
+
+      <View style={{ alignItems: "center", justifyContent: "center", marginTop: 20 }}>{weather}</View>
+    </Background>
+  );
 }
 
 const styles = StyleSheet.create({
-    privacy: {
-        fontWeight: "bold",
-        color: "blue",
-        textAlign: "center",
-        width: 225,
-        marginTop: 20,
-        fontSize: 17,
-    },
+  privacy: {
+    fontWeight: "bold",
+    color: "blue",
+    textAlign: "center",
+    width: 225,
+    marginTop: 20,
+    fontSize: 17,
+  },
+  icon: {
+    width: 180,
+    height: 180,
+    marginBottom: 30,
+  },
 });
