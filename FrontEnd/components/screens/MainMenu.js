@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { View, Text, Button, StyleSheet,Image } from "react-native";
+import { View, Text, Button, StyleSheet, Image } from "react-native";
 
 import Background from "../background/Background";
 import TextStyles from "../styles/Text";
@@ -22,74 +22,78 @@ import ImgData from "../data/ImageSources";
 // import SaulDebVejas from "../../assets/raster/WeatherIcons/SauleDebesisVejas.png";
 // import SaulDebVejasLiet from "../../assets/raster/WeatherIcons/SauleDebesisVejasLietus.png";
 
-let globa={};
+let globa = {};
 
-function Orai(){
+function Orai() {
   let hours = new Date().getHours();
-  console.log(Math.trunc(((hours+23)%24)/3));
-  let nowWeather =globa.Days[0].Timeframes[Math.trunc(((hours+23)%24)/3)];
+  //console.log(Math.trunc(((hours+23)%24)/3));
+  let nowWeather = globa.Days[0].Timeframes[Math.trunc(((hours + 23) % 24) / 3)];
   let iconId = nowWeather.wx_icon;
   //let img = <></>;
 
   //globa;
-  console.log(ImgData);
-  try{
+  //console.log(ImgData);
+  try {
     //return <></>;
-  return(<><Image style={styles.icon} source={ImgData[iconId]} /><Text style={{fontSize:70}}>{nowWeather.feelslike_c}°C</Text></>);
-    }
-    catch{
+    return (
+      <>
+        <Image style={styles.icon} source={ImgData[iconId]} />
+        <Text style={{ fontSize: 70 }}>{nowWeather.feelslike_c}°C</Text>
+      </>
+    );
+  } catch {
     return <Text>No such image in image library: {iconId}</Text>;
-    }
+  }
 }
 
 export default function ({ navigation }) {
   const [location, setLocation] = useState(null);
   const [errorMsg, setErrorMsg] = useState(null);
 
-  const [upd, doUpdate] = useState(null);
+  const [hasWeather, updateWeather] = useState(null);
 
   let weather = <></>;
 
   //Get Location================
 
   useEffect(() => {
-    let hours = new Date().getHours();
-    console.log(Math.trunc(((hours+23)%24)/3));
+    //let hours = new Date().getHours();
+    //console.log(Math.trunc(((hours+23)%24)/3));
     (async () => {
       let { status } = await Location.requestPermissionsAsync();
       if (status !== "granted") {
         setErrorMsg("Permission to access location was denied");
-      }
-      else{
-      let location = await Location.getCurrentPositionAsync({});
-      setLocation(location);
+      } else {
+        let location = await Location.getCurrentPositionAsync({});
+        setLocation(location);
       }
     })();
   }, []);
-  
+
   //=================
 
   //get weather data=======
-  if (location && !upd) {
-    const lat = Math.round(location.coords.latitude*100)/100;
-    const lon = Math.round(location.coords.longitude*100)/100;
-    console.log(lat +" " +lon);
-    
-    fetch("http://api.weatherunlocked.com/api/forecast/"+lat+","+lon+"?app_id=b188c162&app_key=62fd3d2f66c74f7b9d1064538c497646").then((response) => {
+  if (location && !hasWeather) {
+    const lat = Math.round(location.coords.latitude * 100) / 100;
+    const lon = Math.round(location.coords.longitude * 100) / 100;
+    //console.log(lat +" " +lon);
+
+    fetch("http://api.weatherunlocked.com/api/forecast/" + lat + "," + lon + "?app_id=b188c162&app_key=62fd3d2f66c74f7b9d1064538c497646")
+    .then((response) => {
       //console.log(response);
       response.json().then((data) => {
         globa = data;
-        doUpdate(data.Days[0].date);
+        updateWeather(data.Days[0].date);
       });
-    });
+    }).catch(err=>setErrorMsg("bad connection with weather api"));
   }
 
   if (errorMsg) {
-  weather=<Text>{errorMsg}</Text>;
+    weather = <Text>{errorMsg}</Text>;
   }
-  if(upd){
-    console.log(globa);
-    weather=<Text>weather</Text>;
+  if (hasWeather) {
+    //console.log(globa);
+    weather = <Text>weather</Text>;
     weather = Orai();
   }
   //===========
@@ -99,9 +103,7 @@ export default function ({ navigation }) {
       <MyHeader navigation={navigation} goBack={false} />
       <Text style={[TextStyles.general, { marginTop: 40 }]}>Šiandienos orų prognozė</Text>
 
-      <View style={{ alignItems: "center", justifyContent: "center", marginTop: 20 }}>
-        {weather}
-      </View>
+      <View style={{ alignItems: "center", justifyContent: "center", marginTop: 20 }}>{weather}</View>
     </Background>
   );
 }
@@ -119,6 +121,5 @@ const styles = StyleSheet.create({
     width: 180,
     height: 180,
     marginBottom: 30,
-    
   },
 });
