@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import { View, Text, Button, StyleSheet } from "react-native";
+import { View, Text, Button, StyleSheet,TextInput } from "react-native";
 
 import AsyncStorage from "@react-native-community/async-storage";
 import Background from "../background/Background";
 import TextStyles from "../styles/Text";
 import InputStyles from "../styles/Input";
 import MyHeader from "../header/MyHeader";
-import { ScrollView, TextInput } from "react-native-gesture-handler";
+import { ScrollView } from "react-native-gesture-handler";
 import StyledButton from "../buttons/StyledButton";
 import Icon from "../images/Icon";
 
