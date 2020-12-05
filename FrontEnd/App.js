@@ -18,6 +18,7 @@ import Question5 from "./components/screens/questionnaire/Question5";
 import GoToStart from "./components/screens/questionnaire/GoToStart";
 import MainMenu from "./components/screens/MainMenu";
 import Loading from "./components/screens/Loading";
+import Outfit from "./components/screens/Outfit";
 
 const Stack = createStackNavigator();
 
@@ -64,6 +65,7 @@ export default function App() {
         <Stack.Screen name="Question4" component={Question4} />
         <Stack.Screen name="Question5" component={Question5} />
         <Stack.Screen name="Settings" component={Settings} />
+        <Stack.Screen name="Outfit" component={Outfit} />
         <Stack.Screen name="GoToStart" component={GoToStart} />
         <Stack.Screen name="Confirmation" component={Confirmation} />
         

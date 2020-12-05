@@ -103,10 +103,13 @@ export default function ({ navigation }) {
   return (
     <Background >
       
-      <MyHeader navigation={navigation} goBack={false} />
+      <MyHeader navigation={navigation} goBack={true} />
       <Text style={[TextStyles.general, { marginTop: 40 }]}>Šiandienos orų prognozė</Text>
 
       <View style={{ alignItems: "center", justifyContent: "center", marginTop: 20 }}>{weather}</View>
+      <View  style={{ alignItems: "center", justifyContent: "center", marginTop: 20 }}>
+        <StyledButton onPress={() => navigation.navigate("Outfit")}>Aprangos pasiūlymai</StyledButton>
+      </View>
     </Background>
   );
 }
