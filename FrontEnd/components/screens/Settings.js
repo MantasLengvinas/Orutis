@@ -30,7 +30,7 @@ export default function ({ navigation }) {
       <MyHeader navigation={navigation} goBack={true}/>
       <View style={{flex:1, alignItems: "center", justifyContent: "center" }}>
         <View style={{ marginTop: 45 }}>
-          <Image style={{width: 50, height: 50}}source={require("../../assets/raster/user.png")}/>
+          <Image style={styles.image} source={require("../../assets/raster/user.png")}/>
           <Text style={TextStyles.general}> Vartotojo vardas </Text>
         </View>
         <View style={styles.bottomContainer}>
@@ -50,4 +50,12 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "flex-end",
   },
+  image: {
+    width: 80, 
+    height: 80,
+    borderRadius: 80,
+    overflow: "hidden",
+    borderWidth: 1,
+    borderColor: "#3A3434",
+  }
 });
