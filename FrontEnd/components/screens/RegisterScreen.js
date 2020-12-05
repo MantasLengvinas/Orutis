@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, Text, Button, StyleSheet,TextInput } from "react-native";
+import { View, Text, Button, StyleSheet, TextInput } from "react-native";
 
 import AsyncStorage from "@react-native-community/async-storage";
 import Background from "../background/Background";
@@ -46,20 +46,22 @@ export default function ({ navigation }) {
 
   /////////////////////BACK-END/////////////////////////////////////////
   return (
-    <ScrollView style={{ flex: 1}}>
-      <Background style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-        <MyHeader navigation={navigation} goBack={true} />
-        <Text style={[TextStyles.general, { marginTop: 40 }]}>Registracija</Text>
-        <View style={{ alignItems: "center", justifyContent: "center", marginTop: 60 }}>
-          <TextInput placeholder="Vartotojo vardas" onChangeText={(text) => setUsername(text)} value={username} style={InputStyles.inputField} />
-          <TextInput placeholder="El. Paštas" value={email} onChangeText={(text) => setEmail(text)} style={InputStyles.inputField} />
-          <TextInput secureTextEntry={true} value={password} onChangeText={(text) => setPassword(text)} placeholder="Slaptažodis" style={InputStyles.inputField} />
-        </View>
-        <View style={{ alignItems: "center", justifyContent: "center", marginTop: 20 }}>
-          <StyledButton onPress={() => sendCred()} style={{ marginTop: 20 }}>
-            Registruotis
-          </StyledButton>
-          <Text style={styles.privacy}>Registruodamiesi sutinkate su mūsų privatumo politika</Text>
+    <ScrollView>
+      <Background style={{ flex: 1, alignItems: "center", justifyContent: "center", justifyContent: "space-between" }}>
+        <View>
+          <MyHeader navigation={navigation} goBack={true} />
+          <Text style={[TextStyles.general, { marginTop: 40 }]}>Registracija</Text>
+          <View style={{ alignItems: "center", justifyContent: "center", marginTop: 60 }}>
+            <TextInput placeholder="Vartotojo vardas" onChangeText={(text) => setUsername(text)} value={username} style={InputStyles.inputField} />
+            <TextInput placeholder="El. Paštas" value={email} onChangeText={(text) => setEmail(text)} style={InputStyles.inputField} />
+            <TextInput secureTextEntry={true} value={password} onChangeText={(text) => setPassword(text)} placeholder="Slaptažodis" style={InputStyles.inputField} />
+          </View>
+          <View style={{ alignItems: "center", justifyContent: "center", marginTop: 20 }}>
+            <StyledButton onPress={() => sendCred()} style={{ marginTop: 20 }}>
+              Registruotis
+            </StyledButton>
+            <Text style={styles.privacy}>Registruodamiesi sutinkate su mūsų privatumo politika</Text>
+          </View>
         </View>
         <View style={{ alignItems: "center", justifyContent: "center", marginTop: 20 }}>
           <Icon />
