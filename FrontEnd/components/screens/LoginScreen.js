@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, Text, Button, StyleSheet,TextInput } from "react-native";
+import { View, Text, Button, StyleSheet, TextInput, Dimensions } from "react-native";
 
 import AsyncStorage from "@react-native-community/async-storage";
 import Background from "../background/Background";
@@ -53,30 +53,31 @@ export default function ({ navigation }) {
 
   /////////////////////BACK-END//////////////////////////////////////////
   return (
-    <ScrollView>
-    <Background style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-      <MyHeader navigation={navigation} goBack={true} />
-      <Text style={[TextStyles.general, { marginTop: 40 }]}>Prisijunkite</Text>
-      <Text style={{ textAlign: "center", color: "red", marginTop: 40, fontSize: 20 }}>{error}</Text>
-      <View style={{ alignItems: "center", justifyContent: "center", marginTop: 60 }}>
-        <TextInput placeholder="El. Paštas" style={InputStyles.inputField} onChangeText={(text) => setEmail(text)} value={email} />
-        <TextInput secureTextEntry={true} placeholder="Slaptažodis" style={InputStyles.inputField} onChangeText={(text) => setPassword(text)} value={password} />
-      </View>
-      <View style={{ alignItems: "center", justifyContent: "center", marginTop: 20 }}>
-        <StyledButton onPress={() => sendCred()} style={{ marginTop: 20 }}>
-          Prisijungti
-        </StyledButton>
-        <Text onPress={() => navigation.navigate("ForgotPassword")} style={styles.privacy}>
-          Pamiršote slaptažodį?
-        </Text>
-      </View>
-      <View style={{ alignItems: "center", justifyContent: "center", marginTop: 20 }}>
-        <Icon />
-        <Text onPress={() => navigation.navigate("Register")} style={{ fontWeight: "bold", color: "black", fontSize: 20 }}>
-          Neturi paskyros?
-        </Text>
-      </View>
-    </Background></ScrollView>
+    <Background>
+      <ScrollView>
+        <MyHeader navigation={navigation} goBack={true} />
+        <Text style={[TextStyles.general, { marginTop: 40 }]}>Prisijunkite</Text>
+        <Text style={{ textAlign: "center", color: "red", marginTop: 20, fontSize: 20 }}>{error}</Text>
+        <View style={{ alignItems: "center", justifyContent: "center", marginTop: 20 }}>
+          <TextInput placeholder="El. Paštas" style={InputStyles.inputField} onChangeText={(text) => setEmail(text)} value={email} />
+          <TextInput secureTextEntry={true} placeholder="Slaptažodis" style={InputStyles.inputField} onChangeText={(text) => setPassword(text)} value={password} />
+        </View>
+        <View style={{ alignItems: "center", justifyContent: "center", marginTop: 20 }}>
+          <StyledButton onPress={() => sendCred()} style={{ marginTop: 20 }}>
+            Prisijungti
+          </StyledButton>
+          <Text onPress={() => navigation.navigate("ForgotPassword")} style={styles.privacy}>
+            Pamiršote slaptažodį?
+          </Text>
+        </View>
+        <View style={{ alignItems: "center", justifyContent: "center", marginTop: 20 }}>
+          <Icon />
+          <Text onPress={() => navigation.navigate("Register")} style={{ fontWeight: "bold", color: "black", fontSize: 20 }}>
+            Neturi paskyros?
+          </Text>
+        </View>
+      </ScrollView>
+    </Background>
   );
 }
 

@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import { View, Text, Button, StyleSheet } from "react-native";
 import AsyncStorage from "@react-native-community/async-storage";
 
@@ -10,74 +10,70 @@ import MyHeader from "../../header/MyHeader";
 import { ScrollView, TextInput } from "react-native-gesture-handler";
 import StyledButton from "../../buttons/QuestionButton";
 import Icon from "../../images/Icon";
-import { MaterialCommunityIcons } from '@expo/vector-icons'; 
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 export default function ({ navigation }) {
+  /////////////////////BACK-END/////////////////////////////////////////
 
-    /////////////////////BACK-END/////////////////////////////////////////
+  let [value, setValue] = useState("");
 
-    let [value, setValue] = useState('')
+  let saveQuestion = async (val) => {
+    let token = await AsyncStorage.getItem("token");
+    setValue(val);
+    fetch("http://orutis.live/quiz?q=3", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: token,
+      },
+      body: JSON.stringify({
+        value: value,
+      }),
+    })
+      .then((res) => res.json())
+      .then(async (data) => {
+        console.log(data);
+        navigation.navigate("Question4");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
-    let saveQuestion = async (val) => {
-        let token = await AsyncStorage.getItem('token')
-        setValue(val);
-        fetch("http://orutis.live/quiz?q=3", {
-            method: "POST",
-            headers: {
-            'Content-Type': 'application/json',
-            'Authorization': token
-            },
-            body: JSON.stringify({
-                "value": value
-            })
-        })
-        .then(res => res.json())
-        .then(async (data) => {
-            console.log(data);
-            navigation.navigate("Question4")
-        })
-        .catch(err => {
-            console.log(err);
-        })
-    }
+  /////////////////////BACK-END//////////////////////////////////////////
+  return (
+    <Background>
+      <MyHeader navigation={navigation} goBack={true} />
+      <Text style={[TextStyles.general, { marginTop: 40 }]}>Ar jums patinka aktyvus laisvalaikis?</Text>
+      <View style={{ flexDirection: "row", justifyContent: "space-around" }}>
+        <View style={{  paddingTop: 100, paddingBottom: 20 }}>
+          <StyledButton onPress={() => saveQuestion(true)}>
+            <Text style={TextStyles.general}> Taip {"\n"}</Text>
+            <MaterialCommunityIcons name="run-fast" size={40} color="black" />
+          </StyledButton>
+        </View>
 
-/////////////////////BACK-END//////////////////////////////////////////
-    return (
-        <Background style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-            <MyHeader navigation={navigation} goBack={true} />
-            <Text style={[TextStyles.general, { marginTop: 40 }]}>Ar jums patinka aktyvus laisvalaikis?</Text>
-            <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
-                <View style={{ paddingLeft: 65, paddingTop: 100, paddingBottom: 20 }}>
-                    <StyledButton onPress={() => saveQuestion(true)} >
-                    <Text style={TextStyles.general}> Taip {"\n"}</Text>
-                    <MaterialCommunityIcons name="run-fast" size={40} color="black" />    
-                    </StyledButton>
-                </View>
-            
-                
-                <View style={{ paddingRight: 65, paddingTop: 100, paddingBottom: 20 }}>
-                    <StyledButton onPress={() => saveQuestion(false)} >
-                    <Text style={TextStyles.general}> Ne {"\n"}</Text>
-                    <MaterialCommunityIcons name="human-male" size={45} color="black" />
-                    </StyledButton>
-                </View>
-            </View>
-            <View style={{ alignItems: "center", justifyContent: "center", marginTop: 20 }}>
-                <Icon />
-            </View>
-
-            
-        </Background>
-    );
+        <View style={{ paddingTop: 100, paddingBottom: 20 }}>
+          <StyledButton onPress={() => saveQuestion(false)}>
+            <Text style={TextStyles.general}> Ne {"\n"}</Text>
+            <MaterialCommunityIcons name="human-male" size={45} color="black" />
+          </StyledButton>
+        </View>
+      </View>
+      <View style={{ alignItems: "center", justifyContent: "center", marginTop: 20 }}>
+        <Icon />
+      </View>
+    </Background>
+  );
 }
 
 const styles = StyleSheet.create({
-    privacy: {
-        fontWeight: "bold",
-        color: "blue",
-        textAlign: "center",
-        width: 225,
-        marginTop: 20,
-        fontSize: 17,
-    },
+  privacy: {
+    fontWeight: "bold",
+    color: "blue",
+    textAlign: "center",
+    width: 225,
+    marginTop: 20,
+    fontSize: 17,
+  },
 });

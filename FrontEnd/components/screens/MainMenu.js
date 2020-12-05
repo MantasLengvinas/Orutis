@@ -101,7 +101,8 @@ export default function ({ navigation }) {
   //===========
 
   return (
-    <Background style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
+    <Background >
+      
       <MyHeader navigation={navigation} goBack={false} />
       <Text style={[TextStyles.general, { marginTop: 40 }]}>Šiandienos orų prognozė</Text>
 

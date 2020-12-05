@@ -10,32 +10,32 @@ import StyledButton from "../buttons/StyledButton";
 import Icon from "../images/Icon";
 
 export default function ({ navigation }) {
-    return (
-        <Background style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-            <MyHeader navigation={navigation} goBack={true} />
-            <Text style={[TextStyles.general, { marginTop: 40 }]}>Į Jūsų el. paštą sėkmingai išsiųstas patvirtinimo laiškas </Text>
-            <Text style={[TextStyles.general, { marginTop: 40 }]}>Prašome patvirtinti el. paštą per 10 minučių</Text>
-            <View style={{ alignItems: "center", justifyContent: "center", marginTop: 60 }}>
-            </View>
-            
-            <View style={{ alignItems: "center", justifyContent: "center", marginTop: 20 }}>
-                <Icon />
-            </View>
-            <View style={{ alignItems: "center", justifyContent: "center", marginTop: 20 }}>
-                <StyledButton onPress={() => navigation.navigate("Login")} style={{ marginTop: 20 }}>Prisijungti</StyledButton>
-            </View>
-        </Background>
-    );
+  return (
+    <Background>
+      <MyHeader navigation={navigation} goBack={true} />
+      <Text style={[TextStyles.general, { marginTop: 40 }]}>Į Jūsų el. paštą sėkmingai išsiųstas patvirtinimo laiškas </Text>
+      <Text style={[TextStyles.general, { marginTop: 40 }]}>Prašome patvirtinti el. paštą per 10 minučių</Text>
+      <View style={{ alignItems: "center", justifyContent: "center", marginTop: 60 }}></View>
+
+      <View style={{ alignItems: "center", justifyContent: "center", marginTop: 20 }}>
+        <Icon />
+      </View>
+      <View style={{ alignItems: "center", justifyContent: "center", marginTop: 20 }}>
+        <StyledButton onPress={() => navigation.navigate("Login")} style={{ marginTop: 20 }}>
+          Prisijungti
+        </StyledButton>
+      </View>
+    </Background>
+  );
 }
 
 const styles = StyleSheet.create({
-    privacy: {
-        fontWeight: "bold",
-        color: "blue",
-        textAlign: "center",
-        width: 225,
-        marginTop: 20,
-        fontSize: 17,
-    },
+  privacy: {
+    fontWeight: "bold",
+    color: "blue",
+    textAlign: "center",
+    width: 225,
+    marginTop: 20,
+    fontSize: 17,
+  },
 });
-

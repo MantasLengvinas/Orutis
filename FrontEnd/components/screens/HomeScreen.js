@@ -8,10 +8,9 @@ import TextStyles from "../styles/Text";
 import LoginButton from "../buttons/LoginButton";
 import Icon from "../images/Icon";
 import LoginButtonTop from "../buttons/LoginButtonTop";
-
 export default function ({ navigation }) {
   return (
-    <Background>
+    <Background >
       <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
         <LoginButtonTop onPress={() => navigation.navigate("Login")} style={{ marginTop: 5 }}>
           PRISIJUNGTI

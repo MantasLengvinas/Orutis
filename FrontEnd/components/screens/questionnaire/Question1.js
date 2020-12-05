@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import { View, Text, Button, StyleSheet } from "react-native";
 import AsyncStorage from "@react-native-community/async-storage";
 
@@ -10,74 +10,70 @@ import MyHeader from "../../header/MyHeader";
 import { ScrollView, TextInput } from "react-native-gesture-handler";
 import StyledButton from "../../buttons/QuestionButton";
 import Icon from "../../images/Icon";
-import { FontAwesome5 } from '@expo/vector-icons'; 
+import { FontAwesome5 } from "@expo/vector-icons";
 
 export default function ({ navigation }) {
+  /////////////////////BACK-END/////////////////////////////////////////
 
-    /////////////////////BACK-END/////////////////////////////////////////
+  let [value, setValue] = useState("");
 
-    let [value, setValue] = useState('')
+  let saveQuestion = async (val) => {
+    let token = await AsyncStorage.getItem("token");
+    setValue(val);
+    fetch("http://orutis.live/quiz?q=1", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: token,
+      },
+      body: JSON.stringify({
+        value: value,
+      }),
+    })
+      .then((res) => res.json())
+      .then(async (data) => {
+        console.log(data);
+        navigation.navigate("Question2");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
-    let saveQuestion = async (val) => {
-        let token = await AsyncStorage.getItem('token')
-        setValue(val);
-        fetch("http://orutis.live/quiz?q=1", {
-            method: "POST",
-            headers: {
-            'Content-Type': 'application/json',
-            'Authorization': token
-            },
-            body: JSON.stringify({
-                "value": value
-            })
-        })
-        .then(res => res.json())
-        .then(async (data) => {
-            console.log(data);
-            navigation.navigate("Question2")
-        })
-        .catch(err => {
-            console.log(err);
-        })
-    }
+  /////////////////////BACK-END//////////////////////////////////////////
+  return (
+    <Background>
+      <MyHeader navigation={navigation} goBack={true} />
+      <Text style={[TextStyles.general, { marginTop: 40 }]}>Koks oras jums patinka labiausiai?</Text>
+      <View style={{ flexDirection: "row", justifyContent: "space-around" }}>
+        <View style={{  paddingTop: 100, paddingBottom: 20 }}>
+          <StyledButton onPress={() => saveQuestion(false)}>
+            <Text style={TextStyles.general}> Šiltas {"\n"}</Text>
+            <FontAwesome5 name="temperature-high" size={40} color="black" />
+          </StyledButton>
+        </View>
 
-/////////////////////BACK-END//////////////////////////////////////////
-    return (
-        <Background style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-            <MyHeader navigation={navigation} goBack={true} />
-            <Text style={[TextStyles.general, { marginTop: 40 }]}>Koks oras jums patinka labiausiai?</Text>
-            <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
-                <View style={{ paddingLeft: 65, paddingTop: 100, paddingBottom: 20 }}>
-                    <StyledButton onPress={() => saveQuestion(false)} >
-                    <Text style={TextStyles.general}> Šiltas {"\n"}</Text>
-                    <FontAwesome5 name="temperature-high" size={40} color="black" />    
-                    </StyledButton>
-                </View>
-            
-                
-                <View style={{ paddingRight: 65, paddingTop: 100, paddingBottom: 20 }}>
-                    <StyledButton onPress={() => saveQuestion(true)} >
-                    <Text style={TextStyles.general}> Vėsus {"\n"}</Text>
-                    <FontAwesome5 name="temperature-low" size={40} color="black" />
-                    </StyledButton>
-                </View>
-            </View>
-            <View style={{ alignItems: "center", justifyContent: "center", marginTop: 20 }}>
-                <Icon />
-            </View>
-
-            
-        </Background>
-    );
+        <View style={{  paddingTop: 100, paddingBottom: 20 }}>
+          <StyledButton onPress={() => saveQuestion(true)}>
+            <Text style={TextStyles.general}> Vėsus {"\n"}</Text>
+            <FontAwesome5 name="temperature-low" size={40} color="black" />
+          </StyledButton>
+        </View>
+      </View>
+      <View style={{ alignItems: "center", justifyContent: "center", marginTop: 20 }}>
+        <Icon />
+      </View>
+    </Background>
+  );
 }
 
 const styles = StyleSheet.create({
-    privacy: {
-        fontWeight: "bold",
-        color: "blue",
-        textAlign: "center",
-        width: 225,
-        marginTop: 20,
-        fontSize: 17,
-    },
+  privacy: {
+    fontWeight: "bold",
+    color: "blue",
+    textAlign: "center",
+    width: 225,
+    marginTop: 20,
+    fontSize: 17,
+  },
 });
