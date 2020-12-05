@@ -53,7 +53,7 @@ export default function ({ navigation }) {
 
   /////////////////////BACK-END//////////////////////////////////////////
   return (
-    <ScrollView style={{ flex: 1}}>
+    <ScrollView>
     <Background style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
       <MyHeader navigation={navigation} goBack={true} />
       <Text style={[TextStyles.general, { marginTop: 40 }]}>Prisijunkite</Text>
