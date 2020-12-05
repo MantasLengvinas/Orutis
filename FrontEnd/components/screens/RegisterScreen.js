@@ -46,7 +46,7 @@ export default function ({ navigation }) {
 
   /////////////////////BACK-END/////////////////////////////////////////
   return (
-    <ScrollView>
+    <ScrollView style={{ flex: 1}}>
       <Background style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
         <MyHeader navigation={navigation} goBack={true} />
         <Text style={[TextStyles.general, { marginTop: 40 }]}>Registracija</Text>
