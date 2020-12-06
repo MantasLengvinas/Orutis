@@ -22,12 +22,14 @@ require('./models/User');
 require('./models/Verification')
 let requireToken = require('./middleware/requireToken')
 let authRoutes = require('./routes/authentication')
-let quizRoute = require('./routes/quiz')
+let quizRoutes = require('./routes/quiz')
+let userRoutes = require('./routes/user')
 
 
 app.use(bodyParser.json());
 app.use(authRoutes)
-app.use(quizRoute)
+app.use(quizRoutes)
+app.use(userRoutes)
 
 //Prisijungimas prie duomenu bazes
 mongoose.connect(DB_url, {

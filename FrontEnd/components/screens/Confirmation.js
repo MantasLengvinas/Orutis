@@ -8,8 +8,12 @@ import MyHeader from "../header/MyHeader";
 import { ScrollView, TextInput } from "react-native-gesture-handler";
 import StyledButton from "../buttons/StyledButton";
 import Icon from "../images/Icon";
+import AsyncStorage from "@react-native-community/async-storage";
 
 export default function ({ navigation }) {
+
+  AsyncStorage.clear();
+
   return (
     <Background>
       <MyHeader navigation={navigation} goBack={true} />

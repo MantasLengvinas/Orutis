@@ -89,11 +89,9 @@ router.post('/signin', async (req, res) => {
         res.status(422).send({error: messages.error.userDoNotExist});
     }
     try{
-        if(await user.comparePassword(password)){
+        await user.comparePassword(password)
             let token = jwt.sign({userId:user._id}, jwtkey);
             res.send({token});
-        }
-        res.status(422).send({error: messages.error.passwordIsNotCorrect})
     }catch(err){
         res.status(422).send(err);
     }

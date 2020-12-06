@@ -39,7 +39,6 @@ router.post('/quiz', requireToken, async (req, res) => {
 
     try{ 
         let user = await User.findOne({email});
-        console.log(user.email);
         if(!user){
             res.status(422).send({error: messages.error.notAuthenticated});
         }

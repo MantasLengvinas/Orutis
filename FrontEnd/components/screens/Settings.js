@@ -1,5 +1,5 @@
 import AsyncStorage from "@react-native-community/async-storage";
-import React from "react";
+import React, {useState} from "react";
 import { Text, View, StyleSheet, Image } from "react-native";
 
 import Background from "../background/Background";
@@ -10,6 +10,30 @@ import TextStyles  from "../styles/Text";
 export default function ({ navigation }) {
 
   ////////////////////BACK-END/////////////////////////
+
+  let [username, setUsername] = useState("");
+
+  let getUsername = () => {
+    fetch("http://orutis.live/getUsername", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": global.token
+      }
+    })
+      .then((res) => res.json())
+      .then(async (data) => {
+        try {
+          setUsername(data.username)
+        } catch (err) {
+          console.log(err);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+  getUsername();
 
   let logout = () => {
     try {
@@ -31,7 +55,7 @@ export default function ({ navigation }) {
       <View style={{flex:1, alignItems: "center", justifyContent: "center" }}>
         <View style={{ marginTop: 45 }}>
           <Image style={styles.image} source={require("../../assets/raster/user.png")}/>
-          <Text style={TextStyles.general}> Vartotojo vardas </Text>
+          <Text style={TextStyles.general}> {username} </Text>
         </View>
         <View style={styles.bottomContainer}>
           <View style={{ marginBottom: 40 }}>

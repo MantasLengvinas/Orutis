@@ -24,7 +24,7 @@ export default function ({ navigation }) {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: token,
+        "Authorization": token,
       },
       body: JSON.stringify({
         value: value,

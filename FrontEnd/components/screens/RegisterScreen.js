@@ -32,7 +32,6 @@ export default function ({ navigation }) {
       .then((res) => res.json())
       .then(async (data) => {
         try {
-          console.log(data.token);
           await AsyncStorage.setItem("token", data.token);
           navigation.navigate("Main");
         } catch (err) {
