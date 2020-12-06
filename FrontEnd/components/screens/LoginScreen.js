@@ -32,13 +32,12 @@ export default function ({ navigation }) {
     })
       .then((res) => res.json())
       .then(async (data) => {
-        console.log(data);
         try {
           if (data.error) {
             setError(data.error);
-            console.log(error);
           }
           if (data.token) {
+            global.token = data.token;
             await AsyncStorage.setItem("token", data.token);
             navigation.navigate("MainMenu");
           }

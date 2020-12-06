@@ -1,5 +1,5 @@
 import AsyncStorage from "@react-native-community/async-storage";
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import { Text, View, StyleSheet, Image } from "react-native";
 
 import Background from "../background/Background";
@@ -10,8 +10,6 @@ import TextStyles  from "../styles/Text";
 export default function ({ navigation }) {
 
   ////////////////////BACK-END/////////////////////////
-
-  let [username, setUsername] = useState("");
 
   let getUsername = () => {
     fetch("http://orutis.live/getUsername", {
@@ -24,7 +22,7 @@ export default function ({ navigation }) {
       .then((res) => res.json())
       .then(async (data) => {
         try {
-          setUsername(data.username)
+          global.username = data.username;
         } catch (err) {
           console.log(err);
         }
@@ -33,7 +31,9 @@ export default function ({ navigation }) {
         console.log(err);
       });
   }
-  getUsername();
+  if(!global.username){
+    getUsername();
+  }
 
   let logout = () => {
     try {
@@ -55,7 +55,7 @@ export default function ({ navigation }) {
       <View style={{flex:1, alignItems: "center", justifyContent: "center" }}>
         <View style={{ marginTop: 45 }}>
           <Image style={styles.image} source={require("../../assets/raster/user.png")}/>
-          <Text style={TextStyles.general}> {username} </Text>
+          <Text style={TextStyles.general}> {global.username} </Text>
         </View>
         <View style={styles.bottomContainer}>
           <View style={{ marginBottom: 40 }}>
