@@ -78,9 +78,9 @@ router.post('/signin', async (req, res) => {
     let {email, password} = req.body;
 
     //Patikrinama ar vartotojas kazka ivede
-    // if(!email || !password){
-    //     res.status(422).send({error: messages.error.noInput});
-    // }
+    if(!email || !password){
+        res.status(422).send({error: messages.error.noInput});
+    }
 
     let user = await User.findOne({email});
 
@@ -89,11 +89,11 @@ router.post('/signin', async (req, res) => {
         res.status(422).send({error: messages.error.userDoNotExist});
     }
     try{
-        await user.comparePassword(password);
-        let token = jwt.sign({userId:user._id}, jwtkey);
-        res.send({token});
-        //Tikrinama ar slaptazodis.
-        //Jei teisingas, sukuriamas ir issaugomas web token'as (vartotojas prijungiamas)
+        if(await user.comparePassword(password)){
+            let token = jwt.sign({userId:user._id}, jwtkey);
+            res.send({token});
+        }
+        res.status(422).send({error: messages.error.passwordIsNotCorrect})
     }catch(err){
         res.status(422).send(err);
     }

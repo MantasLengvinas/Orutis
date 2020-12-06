@@ -39,6 +39,7 @@ router.post('/quiz', requireToken, async (req, res) => {
 
     try{ 
         let user = await User.findOne({email});
+        console.log(user.email);
         if(!user){
             res.status(422).send({error: messages.error.notAuthenticated});
         }
@@ -52,6 +53,24 @@ router.post('/quiz', requireToken, async (req, res) => {
         res.status(422).send(e);
     }
 
+})
+
+router.post('/quizHasBeenCompleted', requireToken, async (req, res) => {
+    let email = req.user.email;
+
+    try{
+        let user = await User.findOne({email});
+        if(!user){
+            res.status(422).send({error: messages.error.notAuthenticated});
+        }
+        if(user.likeColdWeather == null || user.likeFreeActivities == null){
+            res.status(422).send({error: messages.error.quizHasNotBeenCompleted});
+        }
+        res.send({success: messages.success.quizHasBeenCompleted});
+    }
+    catch(e){
+        res.status(422).send({error: e});
+    }
 })
 
 module.exports = router;
