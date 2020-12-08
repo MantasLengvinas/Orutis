@@ -66,7 +66,7 @@ export default function ({ navigation }) {
         </View>
         <View style={styles.bottomContainer}>
           <View style={{ marginBottom: 40 }}>
-            <StyledButton onPress={() => navigation.navigate("Loading")}> Menu </StyledButton>
+            <StyledButton onPress={() => navigation.navigate("MainMenu")}> Menu </StyledButton>
             <View style={{ marginBottom: 10 }}></View>
             <StyledButton onPress={() => navigation.navigate("Question1")}> Keisti pomėgius </StyledButton>
             <View style={{ marginBottom: 10 }}></View>

@@ -20,30 +20,11 @@ import MainMenu from "./components/screens/MainMenu";
 import Loading from "./components/screens/Loading";
 import Outfit from "./components/screens/Outfit";
 import Destinations from "./components/screens/Destinations";
+import MoreInfo from "./components/screens/MoreInfo";
 
 const Stack = createStackNavigator();
 
 export default function App() {
-  //////////////BACK-END//////////////////////
-  // let [isSignedUp, signUp] = useState(null);
-  // // AsyncStorage.clear();
-
-  // let Authorize = async () => {
-  //   global.token = await AsyncStorage.getItem("token");
-  //   if (token) {
-  //     signUp(true);
-  //   } else {
-  //     signUp(false);
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   Authorize();
-
-  //   return () => {
-  //     console.log("Authorization success");
-  //   };
-  // }, []);
 
   return (
     <NavigationContainer>
@@ -70,6 +51,7 @@ export default function App() {
         <Stack.Screen name="GoToStart" component={GoToStart} />
         <Stack.Screen name="Confirmation" component={Confirmation} />
         <Stack.Screen name="Destinations" component={Destinations} />
+        <Stack.Screen name="MoreInfo" component={MoreInfo} />
         
       </Stack.Navigator>
     </NavigationContainer>
