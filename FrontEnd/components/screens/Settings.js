@@ -1,6 +1,7 @@
 import AsyncStorage from "@react-native-community/async-storage";
 import React, {useState, useEffect} from "react";
 import { Text, View, StyleSheet, Image } from "react-native";
+import Unorderedlist from 'react-native-unordered-list';
 
 import Background from "../background/Background";
 import StyledButton from "../buttons/StyledButton";
@@ -53,14 +54,25 @@ export default function ({ navigation }) {
     <Background>
       <MyHeader navigation={navigation} goBack={true}/>
       <View style={{flex:1, alignItems: "center", justifyContent: "center" }}>
-        <View style={{ marginTop: 45 }}>
+        <View style={{ marginTop: 45, marginBottom: 50, justifyContent: 'center', alignItems: 'center',}}>
           <Image style={styles.image} source={require("../../assets/raster/user.png")}/>
+<<<<<<< Updated upstream
           <Text style={TextStyles.general}> {global.username} </Text>
+=======
+          <Text style={TextStyles.big}> Vartotojo vardas </Text>
+        </View>
+        <View>
+          <Unorderedlist style={TextStyles.general}><Text style={TextStyles.generalList}> pastas@email.com </Text></Unorderedlist>
+          <Unorderedlist style={TextStyles.general}><Text style={TextStyles.generalList}> +37065432109 </Text></Unorderedlist>
+          <Unorderedlist style={TextStyles.general}><Text style={TextStyles.generalList}> Vilnius </Text></Unorderedlist>
+>>>>>>> Stashed changes
         </View>
         <View style={styles.bottomContainer}>
           <View style={{ marginBottom: 40 }}>
+            <StyledButton onPress={() => logout()}> Keisti pomėgius </StyledButton>
+            <View style={{ marginBottom: 10 }}></View>
             <StyledButton onPress={() => logout()}> Atsijungti </StyledButton>
-            <View style={{ marginBottom: 15 }}></View>
+            <View style={{ marginBottom: 10 }}></View>
             <StyledButton onPress={() => navigation.navigate("MainMenu")}> Menu </StyledButton>
           </View>
         </View>
@@ -75,8 +87,8 @@ const styles = StyleSheet.create({
     justifyContent: "flex-end",
   },
   image: {
-    width: 80, 
-    height: 80,
+    width: 110, 
+    height: 110,
     borderRadius: 80,
     overflow: "hidden",
     borderWidth: 1,
