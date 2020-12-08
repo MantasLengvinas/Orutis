@@ -7,8 +7,15 @@ import StyledButton from "../buttons/StyledButton";
 import MyHeader from "../header/MyHeader";
 import TextStyles  from "../styles/Text";
 
-export default function ({ navigation }) {
+export default function ({ navigation, route }) {
+  let hours = new Date().getHours();
+  let dabarOrai = route.params.Days[0].Timeframes[Math.trunc(((hours + 23) % 24) / 3)];
 
+  console.log(dabarOrai.feelslike_c);
+
+  // naudok dabarOrai
+  // dabarOrai.feelslike_c // dabar temp
+  
   return (
     <Background>
       <MyHeader navigation={navigation} goBack={true}/>
