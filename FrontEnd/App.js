@@ -19,6 +19,7 @@ import GoToStart from "./components/screens/questionnaire/GoToStart";
 import MainMenu from "./components/screens/MainMenu";
 import Loading from "./components/screens/Loading";
 import Outfit from "./components/screens/Outfit";
+import Destinations from "./components/screens/Destinations";
 
 const Stack = createStackNavigator();
 
@@ -68,6 +69,7 @@ export default function App() {
         <Stack.Screen name="Outfit" component={Outfit} />
         <Stack.Screen name="GoToStart" component={GoToStart} />
         <Stack.Screen name="Confirmation" component={Confirmation} />
+        <Stack.Screen name="Destinations" component={Destinations} />
         
       </Stack.Navigator>
     </NavigationContainer>

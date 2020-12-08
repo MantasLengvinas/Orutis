@@ -111,7 +111,7 @@ export default function ({ navigation }) {
         <StyledButton onPress={() => navigation.navigate("Outfit")}>Aprangos pasiūlymai</StyledButton>
       </View>
       <View  style={{ alignItems: "center", justifyContent: "center", marginTop: 20 }}>
-        <StyledButton onPress={() => navigation.navigate("Outfit")}>Pasirinkti kelionės tikslą</StyledButton>
+        <StyledButton onPress={() => navigation.navigate("Destinations")}>Pasirinkti kelionės tikslą</StyledButton>
       </View>
     </Background>
   );
