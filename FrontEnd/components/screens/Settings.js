@@ -56,16 +56,13 @@ export default function ({ navigation }) {
       <View style={{flex:1, alignItems: "center", justifyContent: "center" }}>
         <View style={{ marginTop: 45, marginBottom: 50, justifyContent: 'center', alignItems: 'center',}}>
           <Image style={styles.image} source={require("../../assets/raster/user.png")}/>
-<<<<<<< Updated upstream
           <Text style={TextStyles.general}> {global.username} </Text>
-=======
           <Text style={TextStyles.big}> Vartotojo vardas </Text>
         </View>
         <View>
           <Unorderedlist style={TextStyles.general}><Text style={TextStyles.generalList}> pastas@email.com </Text></Unorderedlist>
           <Unorderedlist style={TextStyles.general}><Text style={TextStyles.generalList}> +37065432109 </Text></Unorderedlist>
           <Unorderedlist style={TextStyles.general}><Text style={TextStyles.generalList}> Vilnius </Text></Unorderedlist>
->>>>>>> Stashed changes
         </View>
         <View style={styles.bottomContainer}>
           <View style={{ marginBottom: 40 }}>
