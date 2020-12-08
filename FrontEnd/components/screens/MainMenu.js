@@ -22,8 +22,8 @@ import ImgData from "../data/ImageSources";
 // import SaulDebVejas from "../../assets/raster/WeatherIcons/SauleDebesisVejas.png";
 // import SaulDebVejasLiet from "../../assets/raster/WeatherIcons/SauleDebesisVejasLietus.png";
 
-let globa = {};
 
+let globa={};
 function Orai() {
   let hours = new Date().getHours();
   //console.log(Math.trunc(((hours+23)%24)/3));
@@ -51,7 +51,7 @@ export default function ({ navigation }) {
   const [errorMsg, setErrorMsg] = useState(null);
 
   const [hasWeather, updateWeather] = useState(null);
-
+ 
   let weather = <></>;
 
   //Get Location================
@@ -83,7 +83,7 @@ export default function ({ navigation }) {
         //console.log(response);
         response.json().then((data) => {
           globa = data;
-          console.log(data);
+          console.log(globa);
           updateWeather(data.Days[0].date);
         });
       })
@@ -101,17 +101,20 @@ export default function ({ navigation }) {
   //===========
 
   return (
-    <Background >
-      
-      <MyHeader navigation={navigation} goBack={true} />
-      <Text style={[TextStyles.general, { marginTop: 40 }]}>Šiandienos orų prognozė</Text>
+    <Background style={{flexDirection: "column", justifyContent: "space-between"}}>
+      <View>
+        <MyHeader navigation={navigation} goBack={true} />
+        <Text style={[TextStyles.general, { marginTop: 40 }]}>Šiandienos orų prognozė</Text>
 
-      <View style={{ alignItems: "center", justifyContent: "center", marginTop: 20 }}>{weather}</View>
-      <View  style={{ alignItems: "center", justifyContent: "center", marginTop: 20 }}>
-        <StyledButton onPress={() => navigation.navigate("Outfit")}>Aprangos pasiūlymai</StyledButton>
+        <View style={{ alignItems: "center", justifyContent: "center", marginTop: 20 }}>{weather}</View>
       </View>
-      <View  style={{ alignItems: "center", justifyContent: "center", marginTop: 20 }}>
-        <StyledButton onPress={() => navigation.navigate("Outfit")}>Pasirinkti kelionės tikslą</StyledButton>
+      <View>
+        <View style={{ alignItems: "center", justifyContent: "center", marginTop: 20 }}>
+          <StyledButton onPress={() => navigation.navigate("Outfit", globa)}>Aprangos pasiūlymai</StyledButton>
+        </View>
+        <View style={{ alignItems: "center", justifyContent: "center", marginTop: 20, marginBottom:20 }}>
+          <StyledButton onPress={() => navigation.navigate("Outfit")}>Pasirinkti kelionės tikslą</StyledButton>
+        </View>
       </View>
     </Background>
   );

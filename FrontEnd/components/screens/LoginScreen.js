@@ -32,6 +32,7 @@ export default function ({ navigation }) {
     })
       .then((res) => res.json())
       .then(async (data) => {
+        console.log(data);
         try {
           if (data.error) {
             setError(data.error);
