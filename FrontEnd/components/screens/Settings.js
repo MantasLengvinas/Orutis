@@ -57,7 +57,7 @@ export default function ({ navigation }) {
         <View style={{ marginTop: 45, marginBottom: 50, justifyContent: 'center', alignItems: 'center',}}>
           <Image style={styles.image} source={require("../../assets/raster/user.png")}/>
           <Text style={TextStyles.general}> {global.username} </Text>
-          <Text style={TextStyles.big}> Vartotojo vardas </Text>
+          {/* <Text style={TextStyles.big}> Vartotojo vardas </Text> */}
         </View>
         <View>
           <Unorderedlist style={TextStyles.general}><Text style={TextStyles.generalList}> pastas@email.com </Text></Unorderedlist>

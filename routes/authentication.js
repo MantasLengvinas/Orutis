@@ -90,8 +90,8 @@ router.post('/signin', async (req, res) => {
     }
     try{
         await user.comparePassword(password)
-            let token = jwt.sign({userId:user._id}, jwtkey);
-            res.send({token});
+        let token = jwt.sign({userId:user._id}, jwtkey);
+        res.send({token});
     }catch(err){
         res.status(422).send(err);
     }
