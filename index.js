@@ -3,6 +3,7 @@ let express = require('express')
 let bodyParser = require('body-parser')
 let mongoose = require('mongoose')
 let cors = require('cors')
+let ejs = require('ejs')
 
 //Pagrindiniu kintamuju defininimas
 let app = express()
@@ -25,7 +26,7 @@ let authRoutes = require('./routes/authentication')
 let quizRoutes = require('./routes/quiz')
 let userRoutes = require('./routes/user')
 
-
+app.set('view engine', 'ejs');
 app.use(bodyParser.json());
 app.use(authRoutes)
 app.use(quizRoutes)

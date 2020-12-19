@@ -1,4 +1,4 @@
-﻿import React from "react";
+﻿import React, { useState } from "react";
 import { View, Text, Button, StyleSheet } from "react-native";
 
 import Background from "../background/Background";
@@ -10,15 +10,44 @@ import StyledButton from "../buttons/StyledButton";
 import Icon from "../images/Icon";
 
 export default function ({ navigation }) {
+
+  let [email, setEmail] = useState("");
+
+  let resetPassword = () => {
+    fetch("http://orutis.live/forgotPassword", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email: email
+      }),
+    })
+      .then((res) => res.json())
+      .then(async (data) => {
+        try {
+          if(!data.error){
+            console.log(data);
+            navigation.navigate("Confirmation")
+          }
+        } catch (err) {
+          console.log(err);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   return (
     <Background>
       <MyHeader navigation={navigation} goBack={true} />
       <Text style={[TextStyles.general, { marginTop: 40 }]}>Pamiršai slaptažodį?</Text>
       <View style={{ alignItems: "center", justifyContent: "center", marginTop: 60 }}>
-        <TextInput placeholder="El. Paštas" style={InputStyles.inputField} />
+        <TextInput placeholder="El. Paštas" style={InputStyles.inputField} onChangeText={(text) => setEmail(text)} value={email}/>
       </View>
       <View style={{ alignItems: "center", justifyContent: "center", marginTop: 20 }}>
-        <StyledButton onPress={() => navigation.navigate("Confirmation")} style={{ marginTop: 20 }}>
+        <StyledButton onPress={() => resetPassword()} style={{ marginTop: 20 }}>
           Siųsti
         </StyledButton>
       </View>
