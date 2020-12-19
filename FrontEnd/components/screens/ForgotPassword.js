@@ -4,7 +4,7 @@ import { View, Text, Button, StyleSheet } from "react-native";
 import Background from "../background/Background";
 import TextStyles from "../styles/Text";
 import InputStyles from "../styles/Input";
-import MyHeader from "../header/MyHeader";
+import BackHeader from "../header/BackHeader";
 import { ScrollView, TextInput } from "react-native-gesture-handler";
 import StyledButton from "../buttons/StyledButton";
 import Icon from "../images/Icon";
@@ -41,7 +41,7 @@ export default function ({ navigation }) {
 
   return (
     <Background>
-      <MyHeader navigation={navigation} goBack={true} />
+      <BackHeader navigation={navigation} goBack={true} />
       <Text style={[TextStyles.general, { marginTop: 40 }]}>Pamiršai slaptažodį?</Text>
       <View style={{ alignItems: "center", justifyContent: "center", marginTop: 60 }}>
         <TextInput placeholder="El. Paštas" style={InputStyles.inputField} onChangeText={(text) => setEmail(text)} value={email}/>

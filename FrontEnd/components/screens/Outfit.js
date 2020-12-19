@@ -48,7 +48,7 @@ export default function ({ navigation, route }) {
   if(dabarOrai.cloudtotal_pct < 20) {
     akseksuarai = 'Akiniai nuo saulės'
   } else if (dabarOrai.cloudtotal_pct > 20 && dabarOrai.cloudtotal_pct < 50){
-    akseksuarai = 'Xuj znaet'
+    akseksuarai = ''
   } else {
     akseksuarai = "Skėtis"
   }

@@ -11,23 +11,20 @@ import LoginButtonTop from "../buttons/LoginButtonTop";
 export default function ({ navigation }) {
   return (
     <Background >
-      <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
+      {/* <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
         <LoginButtonTop onPress={() => navigation.navigate("Login")} style={{ marginTop: 5 }}>
           PRISIJUNGTI
         </LoginButtonTop>
-      </View>
+      </View> */}
       <View style={{ flex: 1, alignItems: "center", justifyContent: "center", paddingTop: 40 }}>
         <Text style={TextStyles.general}>Kur keliausite šiandien?</Text>
         <View style={styles.bottomContainer}>
           <Icon />
-          <View style={{ marginBottom: 10 }}>
-            <StyledButton onPress={() => navigation.navigate("Register")}>Registruotis</StyledButton>
-          </View>
-          <View style={{ marginBottom: 10 }}>
-            <LoginButton iconName="Facebook">Prisijunk su Facebook</LoginButton>
+          <View style={{ marginBottom: 15 }}>
+            <StyledButton onPress={() => navigation.navigate("Login")}>Prisijungti</StyledButton>
           </View>
           <View style={{ marginBottom: 40 }}>
-            <LoginButton iconName="Google">Prisijunk su Google</LoginButton>
+            <StyledButton onPress={() => navigation.navigate("Register")}>Registruotis</StyledButton>
           </View>
         </View>
       </View>

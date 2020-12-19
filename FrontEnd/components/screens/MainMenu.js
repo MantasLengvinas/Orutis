@@ -83,7 +83,6 @@ export default function ({ navigation }) {
         //console.log(response);
         response.json().then((data) => {
           globa = data;
-          console.log(globa);
           updateWeather(data.Days[0].date);
         });
       })

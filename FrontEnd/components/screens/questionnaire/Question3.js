@@ -5,7 +5,7 @@ import AsyncStorage from "@react-native-community/async-storage";
 import Background from "../../background/Background";
 import TextStyles from "../../styles/Text";
 import InputStyles from "../../styles/Input";
-import MyHeader from "../../header/MyHeader";
+import BackHeader from "../../header/BackHeader";
 
 import { ScrollView, TextInput } from "react-native-gesture-handler";
 import StyledButton from "../../buttons/QuestionButton";
@@ -43,7 +43,7 @@ export default function ({ navigation }) {
   /////////////////////BACK-END//////////////////////////////////////////
   return (
     <Background>
-      <MyHeader navigation={navigation} goBack={true} />
+      <BackHeader navigation={navigation} goBack={true} />
       <Text style={[TextStyles.general, { marginTop: 40 }]}>Ar jums patinka aktyvus laisvalaikis?</Text>
       <View style={{ flexDirection: "row", justifyContent: "space-around" }}>
         <View style={{  paddingTop: 100, paddingBottom: 20 }}>

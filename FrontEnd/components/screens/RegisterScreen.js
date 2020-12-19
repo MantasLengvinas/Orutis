@@ -5,7 +5,7 @@ import AsyncStorage from "@react-native-community/async-storage";
 import Background from "../background/Background";
 import TextStyles from "../styles/Text";
 import InputStyles from "../styles/Input";
-import MyHeader from "../header/MyHeader";
+import BackHeader from "../header/BackHeader";
 import { ScrollView } from "react-native-gesture-handler";
 import StyledButton from "../buttons/StyledButton";
 import Icon from "../images/Icon";
@@ -16,6 +16,7 @@ export default function ({ navigation }) {
   let [username, setUsername] = useState("");
   let [email, setEmail] = useState("");
   let [password, setPassword] = useState("");
+  let [error, setError] = useState("");
 
   let sendCred = () => {
     fetch("http://orutis.live/signup", {
@@ -31,7 +32,11 @@ export default function ({ navigation }) {
     })
       .then((res) => res.json())
       .then(async (data) => {
+        console.log(data);
         try {
+          if (data.error) {
+            setError(data.error);
+          }
           await AsyncStorage.setItem("token", data.token);
           navigation.navigate("Main");
         } catch (err) {
@@ -48,8 +53,9 @@ export default function ({ navigation }) {
     
       <Background >
           <ScrollView>
-          <MyHeader navigation={navigation} goBack={true} />
+          <BackHeader navigation={navigation} goBack={true} />
           <Text style={[TextStyles.general, { marginTop: 40 }]}>Registracija</Text>
+          <Text style={{ textAlign: "center", color: "red", marginTop: 20, fontSize: 20 }}>{error}</Text>
           <View style={{ alignItems: "center", justifyContent: "center", marginTop: 60 }}>
             <TextInput placeholder="Vartotojo vardas" onChangeText={(text) => setUsername(text)} value={username} style={InputStyles.inputField} />
             <TextInput placeholder="El. Paštas" value={email} onChangeText={(text) => setEmail(text)} style={InputStyles.inputField} />
