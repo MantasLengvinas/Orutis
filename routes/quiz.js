@@ -37,15 +37,20 @@ router.post('/quiz', requireToken, async (req, res) => {
 
     let dataPoint = setDataPoint(q);
 
+    let options = { upsert: true };
+    let data = {
+        $set: {
+            dataPoint: value
+        }
+    }
+
     try{ 
         let user = await User.findOne({email});
         if(!user){
             res.status(422).send({error: messages.error.notAuthenticated});
         }
-        user[dataPoint] = value;
-        if(!user.save()){
-            res.status(422).send({error: messages.error.failedToAddDataPoint});
-        }
+
+        await User.updateOne({email: user.email}, data, options);
         res.send({success: messages.success.saveUserData})
     }
     catch(e) {

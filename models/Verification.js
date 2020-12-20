@@ -29,15 +29,23 @@ let verificationSchema = new mongoose.Schema({
 verificationSchema.methods.verifyUser = async function(email) {
     let verify = this;
     let user = await User.findOne({email}); //Randamas patvirtinamas vartotojas
-    console.log(user);
+    let options = { upsert: true };
+    let data = {
+        $set: {
+            isVerified: true
+        }
+    }
 
-    return new Promise((resolve, reject) => {
-        user.isVerified = true;
+    return new Promise(async (resolve, reject) => {
+        try {
+            await User.updateOne({email: user.email}, data, options);
+        }
+        catch(e){
+            return reject(messages.error.failedToVerifyUser);
+        }
+
         if(!verify.deleteOne({email})){ //Jei del klaidos nepavyktu istrinti verify linko, patvirtinimas nebutu vykdomas
             return reject(messages.error.failedToDeleteVerification);
-        }
-        if(!user.save()){ //Jei nepavyktu patvirtint vartotojo, butu grazinama klaida
-            return reject(messages.error.failedToVerifyUser);
         }
         resolve(true);
     })

@@ -102,10 +102,17 @@ router.post('/signin', async (req, res) => {
 
 //Vartotojo patvirtinmo funkcija
 router.get('/verifyEmail', async(req, res) => {
-    let link = generateLink(req.hostname, "verifyEmail", req.query.s);
+    // let link = generateLink(req.hostname, "verifyEmail", req.query.s);
 
+    // let verify = await Verification.findOne({link});
+    // if(verify == null){
+    //     res.status(422).send({error: messages.error.verificationExpired});
+    // }
+    let link = "orutis.live/verifyEmail?s=GaZLKLS8xY"
     let verify = await Verification.findOne({link});
     let e = verify.email;
+    console.log(verify);
+    
     if(!verify){
         res.status(422).send({error: messages.error.verificationExpired});
     } //Tikrinama ar verify link'as nepasibaigusio galiojimo laiko ir(ar) nebuvo panaudotas
