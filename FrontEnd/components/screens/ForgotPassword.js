@@ -28,7 +28,7 @@ export default function ({ navigation }) {
         try {
           if(!data.error){
             console.log(data);
-            navigation.navigate("Confirmation")
+            navigation.navigate("ConfirmationPassword")
           }
         } catch (err) {
           console.log(err);

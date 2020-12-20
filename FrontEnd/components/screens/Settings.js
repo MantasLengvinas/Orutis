@@ -68,7 +68,7 @@ export default function ({ navigation }) {
           <View style={{ marginBottom: 40 }}>
             <StyledButton onPress={() => navigation.navigate("MainMenu")}> Menu </StyledButton>
             <View style={{ marginBottom: 10 }}></View>
-            <StyledButton onPress={() => navigation.navigate("Question1")}> Keisti pomėgius </StyledButton>
+            <StyledButton onPress={() => navigation.navigate("Question1Change")}> Keisti pomėgius </StyledButton>
             <View style={{ marginBottom: 10 }}></View>
             <StyledButton onPress={() => logout()}> Atsijungti </StyledButton>
           </View>
