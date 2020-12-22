@@ -4,7 +4,7 @@ import { View, Text, Button, StyleSheet, Image } from "react-native";
 import Background from "../background/Background";
 import TextStyles from "../styles/Text";
 import InputStyles from "../styles/Input";
-import MyHeader from "../header/MyHeader";
+import OptionHeader from "../header/OptionHeader";
 import { ScrollView, TextInput } from "react-native-gesture-handler";
 import StyledButton from "../buttons/StyledButton";
 import * as Location from "expo-location";
@@ -102,7 +102,7 @@ export default function ({ navigation }) {
   return (
     <Background style={{flexDirection: "column", justifyContent: "space-between"}}>
       <View>
-        <MyHeader navigation={navigation} goBack={true} />
+        <OptionHeader navigation={navigation} goBack={true} />
         <Text style={[TextStyles.general, { marginTop: 40 }]}>Šiandienos orų prognozė</Text>
 
         <View style={{ alignItems: "center", justifyContent: "center", marginTop: 20 }}>{weather}</View>

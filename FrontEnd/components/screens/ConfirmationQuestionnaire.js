@@ -18,7 +18,7 @@ export default function ({ navigation }) {
       <View style={{ alignItems: "center", justifyContent: "center", marginTop: 20 }}>
         <Icon />
       </View>
-      <View style={{ alignItems: "center", justifyContent: "center" }}>\
+      <View style={{ alignItems: "center", justifyContent: "center" }}>
       <StyledButton onPress={() => navigation.navigate("MainMenu")}>Grįžti</StyledButton>
       </View>
     </Background>
