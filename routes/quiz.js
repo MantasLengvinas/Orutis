@@ -40,7 +40,7 @@ router.post('/quiz', requireToken, async (req, res) => {
     let options = { upsert: true };
     let data = {
         $set: {
-            dataPoint: value
+            [dataPoint]: value
         }
     }
 
