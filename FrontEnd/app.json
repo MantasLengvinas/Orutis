@@ -2,7 +2,7 @@
   "expo": {
     "name": "Orutis",
     "slug": "orutis",
-    "version": "1.0.0",
+    "version": "1.0.3",
     "orientation": "portrait",
     "icon": "./assets/raster/icon.png",
     "splash": {
