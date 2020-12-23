@@ -223,7 +223,7 @@ export default [
   },  
 
   {
-    image: "https://static.meniu.lt/media/cache/outbound_thumb_350x180/uploads/restaurant/photo/6/2557/3fc32ad1ba1d537605ff287454d0ae2d0a07efdb.jpeg",
+    image: "https://www.govilnius.lt/api/images/5e260ccc4f5f2930e2c42467?w=750&h=500&fit=contain",
     title: "Vilniaus Šv. Onos bažnyčia",
     description: "Katalikų bažnyčia Vilniaus senamiestyje.",
     lat: "later",
