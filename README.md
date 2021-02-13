@@ -1,5 +1,7 @@
 # Orutis `en`
 
+`Computer architecture project VU MIF ISI 2020`
+
 ***I was working on back-end, I've configured database and I was responsible for deployment***
 
 ***Due to financial issues, back-end server has been disabled***
