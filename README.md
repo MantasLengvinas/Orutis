@@ -1,6 +1,6 @@
 # Orutis `en`
 
-***I was working on bacck-end, I've configured database and I was responsible for deployment***
+***I was working on back-end, I've configured database and I was responsible for deployment***
 
 ***Due to financial issues, back-end server has been disabled***
 
@@ -33,6 +33,7 @@ In the future, project may be continued with bunch of updates
   - Better looking desing
   - Various animations
   - Smoother transitions between screens
+  - English support
   
 -------------------------------------------------------------------------------------------------------
 
@@ -73,3 +74,4 @@ Ateityje, esant reikalui, projektas galėtų buti „prikeltas“ ir atnaujintas
 - Gražesnis, modernesnis dizainas
 - Animacijos
 - „Švelnesnis“ perėjimas tarp puslapių 
+- Anglų kalbos palaikymas
