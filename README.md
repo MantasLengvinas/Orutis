@@ -2,7 +2,7 @@
 
 `Computer architecture project VU MIF ISI 2020`
 
-***I was working on back-end, I've configured database and I was responsible for deployment***
+***I was working on back-end, I've configured database, I was responsible front-end and back-end communication and deployment***
 
 ***Due to financial issues, back-end server has been disabled***
 
@@ -43,7 +43,7 @@ In the future, project may be continued with bunch of updates
 
 `Kompiuterių architektūros projektas VU MIF ISI 2020`
 
-***Aš dirbau ties back-end, konfigūravau duomenų bazę, bei buvau atsakingas už deployment'ą.***
+***Aš dirbau ties back-end, konfigūravau duomenų bazę, bei buvau atsakingas už front-end ir back-end komunikaciją, bei deployment'ą.***
 
 **Dėl finansinių kliūčių, programos back-end buvo išjungtas.**
 
